@@ -7,11 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HardReserve.Contexts
 {
-    public class HardReserveDbContext
+    public class HardReserveDbContext : DbContext
     {
-        public class AppDbContext : DbContext
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    
+        public HardReserveDbContext(DbContextOptions<HardReserveDbContext> options) : base(options)
         {
         }
 
@@ -29,4 +28,3 @@ namespace HardReserve.Contexts
         }
     }
     }
-}
