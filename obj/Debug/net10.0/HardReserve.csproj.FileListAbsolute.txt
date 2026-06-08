@@ -95,3 +95,4 @@ C:\Users\45797375800\Desktop\HardReserve\obj\Debug\net10.0\refint\HardReserve.dl
 C:\Users\45797375800\Desktop\HardReserve\obj\Debug\net10.0\HardReserve.pdb
 C:\Users\45797375800\Desktop\HardReserve\obj\Debug\net10.0\HardReserve.genruntimeconfig.cache
 C:\Users\45797375800\Desktop\HardReserve\obj\Debug\net10.0\ref\HardReserve.dll
+C:\Users\45797375800\Desktop\HardReserve\obj\Debug\net10.0\HardReserve.sourcelink.json
