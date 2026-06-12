@@ -1,6 +1,6 @@
-using Hard_Reserve.Models;
+using HardReserve.Models;
 
-namespace Hard_Reserve.Interfaces
+namespace HardReserve.Interfaces
 {
     public interface IUsuarioRepository
     {

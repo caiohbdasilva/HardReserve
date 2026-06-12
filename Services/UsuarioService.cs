@@ -23,10 +23,10 @@ namespace HardReserve.Services
 
             // 2. REGRA DE NEGÓCIO EXTRA: Se o usuário existir no banco, mas o status dele 
             // for 'I' (Inativo), nós barramos o login aqui na camada de serviço!
-            if (usuario != null && usuario.StatusUsuario == "I")
-            {
-                return null; // Retorna nulo, fingindo que não achou, pois a conta está bloqueada
-            }
+            // if (usuario != null && usuario.StatusUsuario == "I")
+            // {
+            //     return null; // Retorna nulo, fingindo que não achou, pois a conta está bloqueada
+            // }
 
             // 3. Se passou pela regra ou se realmente for nulo, devolvemos o resultado
             return usuario;

@@ -24,7 +24,7 @@ namespace HardReserve.Repositories
             // _context.Usuarios acessa a tabela que o Caio mapeou.
             // .FirstOrDefault procura o primeiro usuário que bata com a condição (E-mail E Senha corretos).
             // Se encontrar, retorna o Usuário com todos os dados. Se não encontrar, retorna null.
-            return _context.Usuarios
+            return _context.Usuario
                 .FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
     }

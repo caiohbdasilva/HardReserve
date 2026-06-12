@@ -14,11 +14,11 @@ namespace HardReserve.Contexts
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Kit> Kits { get; set; }
-        public DbSet<Hardware> Hardwares { get; set; }
-        public DbSet<Reserva> Reservas { get; set; }
-        public DbSet<Hardware_Reserva> Hardware_Reservas { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Kit> Kit { get; set; }
+        public DbSet<Hardware> Hardware { get; set; }
+        public DbSet<Reserva> Reserva { get; set; }
+        public DbSet<Hardware_Reserva> Hardware_Reserva { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

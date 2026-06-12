@@ -20,10 +20,10 @@ namespace HardReserve.Models
         public string? Descricao { get; set; } 
 
         [Required]
-        public string QuantidadeTotal { get; set; } = null!;
+        public int Quantidade_Total { get; set; }
 
         [StringLength(100)]
         public string? Localizacao { get; set; }
-        public int? KitId { get; set; }
+        public int? Kit_Id { get; set; }
     }
 }
