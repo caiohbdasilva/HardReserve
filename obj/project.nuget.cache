@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qk+kS36JBbw=",
+  "dgSpecHash": "oI25AjU9WNc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\45797375800\\HardReserve\\HardReserve.csproj",
+  "projectFilePath": "C:\\Users\\45797375800\\Desktop\\HardReserve\\HardReserve.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\45797375800\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\45797375800\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
