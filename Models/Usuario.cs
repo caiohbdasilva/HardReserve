@@ -6,8 +6,8 @@ namespace HardReserve.Models
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public char StatusUsuario { get; set; } = 'D'; // 'D' = Disponível, 'I' = Indisponível
+        public char Status_Usuario { get; set; } = 'D'; // 'D' = Disponível, 'I' = Indisponível
         public char Role { get; set; } // 'A' = Aluno, 'P' = Professor, 'T' = Técnico
-        public string TurmaUsuario { get; set; }
+        public string Turma_Usuario { get; set; } = null!;
     }
 }

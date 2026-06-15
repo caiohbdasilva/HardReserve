@@ -7,7 +7,7 @@ using HardReserve.Interfaces;
 using HardReserve.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HardReserve.Repositores
+namespace HardReserve.Repository
 {
     public class HardwareRepository : IHardwareRepository
     {

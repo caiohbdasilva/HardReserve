@@ -34,34 +34,6 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QkFTRVxjc3NcbGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Catalogo/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xDYXRhbG9nb1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Historico/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xIaXN0b3JpY29cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Login/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xMb2dpblxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Reserva/Criar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xSZXNlcnZhXENyaWFyLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xTaGFyZWRcX0xheW91dC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/45797375800/Desktop/HardReserve/BASE/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QkFTRVxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/45797375800/Desktop/HardReserve/Views/Hardware/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFyZHdhcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/45797375800/Desktop/HardReserve/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/45797375800/Desktop/HardReserve/Views/Shared/_ValidationScriptsPartial.cshtml]

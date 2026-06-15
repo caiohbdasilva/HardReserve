@@ -2,6 +2,119 @@
     ViewData["Title"] = "Página teste";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bem vindo a HardReserve!</h1>
-</div>
+
+
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Bem-vindo ao<br />
+                <span class="highlight-text">HardReserve</span>
+            </h1>
+            <p class="hero-description">O melhor lugar para fazer sua reserva de hardwares de maneira moderna e
+                automatizada!</p>
+                <div class="hero-buttons">
+                    <a class="btn-hero btn-primary" asp-controller="Login" asp-action="Index">Reservar agora</a>
+                    <a class="btn-hero btn-secondary" asp-controller="Hardware" asp-action="Index">Verificar
+                        disponibilidade</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="/img/ComputadorHome.png" alt="Equipamentos de Hardware" class="hero-hardware-img" />
+                </div>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <h2 class="catalog-title">Catálogo de hardwares</h2>
+
+            <div class="catalog-filters">
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquise...." />
+                </div>
+                <div class="category-box">
+                    <button class="btn-category">
+                        Categorias <i class="bi bi-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="catalog-grid">
+                <div class="catalog-card">
+                    <div class="card-img-container">
+                        <img src="/img/Esp32.png" alt="Kits ESP32" />
+                    </div>
+                    <h3>Kits ESP32</h3>
+                    <p>O ESP32 é uma placa de desenvolvimento, com alto poder de processamento e conectividade Wi-Fi e
+                        Bluetooth embutidas.</p>
+                    </div>
+
+                    <div class="catalog-card">
+                        <div class="card-img-container">
+                            <img src="/img/ServoMotor.png" alt="Servo Motor" />
+                        </div>
+                        <h3>Servo Motor</h3>
+                        <p>Um servo motor é um dispositivo eletromecânico que permite um controle preciso de posição,
+                            velocidade e torque.</p>
+                        </div>
+
+                        <div class="catalog-card">
+                            <div class="card-img-container">
+                                <img src="/img/Imp3D.png" alt="Impressora 3D" />
+                            </div>
+                            <h3>Impressora 3D</h3>
+                            <p>Uma impressora 3D é um equipamento que cria objetos físicos tridimensionais a partir de um
+                                projeto digital.</p>
+                            </div>
+
+                            <div class="catalog-card">
+                                <div class="card-img-container">
+                                    <img src="/img/headset.png" alt="Headset" />
+                                </div>
+                                <h3>Headset</h3>
+                                <p>Headset de alta qualidade para comunicação e testes de áudio em projetos integrados.</p>
+                            </div>
+
+                            <div class="catalog-card">
+                                <div class="card-img-container">
+                                    <img src="/img/mouse.png" alt="Mouse" />
+                                </div>
+                                <h3>Mouse</h3>
+                                <p>Mouse ergonômico e de alta precision para navigation e desenvolvimento nos laboratórios.</p>
+                            </div>
+
+                            <div class="catalog-card">
+                                <div class="card-img-container">
+                                    <img src="/img/teclado.png" alt="Teclado" />
+                                </div>
+                                <h3>Teclado</h3>
+                                <p>Teclado mecânico robusto projetado para longas sessões de programação e automação.</p>
+                            </div>
+                        </div>
+
+                        <div class="catalog-pagination">
+                            <a href="#" class="page-item page-arrow"><i class="bi bi-chevron-left"></i></a>
+                            <a href="#" class="page-item active">1</a>
+                            <a href="#" class="page-item">2</a>
+                            <a href="#" class="page-item">3</a>
+                            <a href="#" class="page-item">4</a>
+                            <a href="#" class="page-item">5</a>
+                            <a href="#" class="page-item">6</a>
+                            <a href="#" class="page-item page-arrow"><i class="bi bi-chevron-right"></i></a>
+                        </div>
+                    </section>
+
+                    <section class="access-section">
+                        <div class="access-container">
+                            <div class="access-image-wrapper">
+                                <img src="/img/nossa-plataforma.png" alt="Notebook e Teclado" class="access-hardware-img" />
+                            </div class="access-content">
+                            <h2 class="access-title">Acesse nossa plataforma</h2>
+                            <p class="access-description">
+                                Faça o seu login, faça a solicitação do seu equipamento hardware
+                            </p>
+                            <a href="#" class="btn-hero btn-primary btn-access">Acessar</a>
+                        </div>
+                    </div>
+                </section>
+

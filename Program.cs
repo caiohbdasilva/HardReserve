@@ -1,11 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using HardReserve.Controllers;
-using HardReserve.Models;
 using HardReserve.Contexts;
 using HardReserve.Interfaces;
 using HardReserve.Repositories;
 using HardReserve.Services;
-using HardReserve.Repositores;
+using HardReserve.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,20 +14,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<HardReserveDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ============================================================================================
-builder.Services.AddScoped<HardReserve.Interfaces.IUsuarioRepository, HardReserve.Repositories.UsuarioRepository>();
-builder.Services.AddScoped<HardReserve.Interfaces.IUsuarioService, HardReserve.Services.UsuarioService>();
-// ============================================================================================
-
-// Configuração do contêiner da Sessão
+// Configuração do contêiner da Sessão (Exatamente igual ao do professor)
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
+// Injeções de Dependência organizadas (Padrão Bibliotec)
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 builder.Services.AddScoped<IHardwareRepository, HardwareRepository>();
 builder.Services.AddScoped<IHardwareService, HardwareService>();
 
@@ -44,7 +39,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-// ATENÇÃO: O UseSession() DEVE ficar obrigatoriamente DEPOIS de UseRouting() e ANTES de UseAuthorization()
+// A sessão ativa logo após o roteamento
 app.UseSession(); 
 
 app.UseAuthorization();

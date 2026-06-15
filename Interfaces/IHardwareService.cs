@@ -8,7 +8,7 @@ namespace HardReserve.Interfaces
 {
     public interface IHardwareService
     {
+        // Alterado para bater exatamente com o método do seu Service
         Task<IEnumerable<Hardware>> BuscarHardwareComCatAsync();
-
     }
 }

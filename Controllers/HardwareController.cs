@@ -1,12 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using HardReserve.Interfaces;
-using HardReserve.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using HardReserve.Interfaces;
 
 namespace HardReserve.Controllers
 {
@@ -18,11 +11,19 @@ namespace HardReserve.Controllers
         {
             _hardwareService = hardwareService;
         }
-        public async Task<IActionResult> Index()
-        {
 
-            var Hardware = await _hardwareService.BuscarHardwareComCatAsync();
-            return View(Hardware);
+        // 1. Adicionado "async" aqui
+        public async Task<IActionResult> Index() 
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            // 2. Mudou o nome do método e adicionou o "await" na frente
+            var listaHardwares = await _hardwareService.BuscarHardwareComCatAsync(); 
+
+            return View(listaHardwares);
         }
     }
 }

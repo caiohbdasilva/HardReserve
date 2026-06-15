@@ -10,38 +10,90 @@
     <link rel="stylesheet" href="~/HardReserve.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HardReserve</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Hardware" asp-action="Index">Hardware</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-navbar box-shadow mb-3">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <img src="img/logo.png" alt="HardReserve" class="header-logo-img" > HardReserve
+            </a>
+            <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation" style="border-color: rgba(0,255,204,0.3)">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+            <ul class="navbar-nav gap-4">
+                <li class="nav-item">
+                    <a class="nav-link active-capsule" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Hardware" asp-action="Index">Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+
+        <main>
+            @RenderBody()
+        </main>
+
+<footer class="custom-footer pt-5 pb-4 mt-5">
+        <div class="container px-4">
+            <div class="row gy-4">
+                
+                <div class="col-md-5 d-flex flex-column gap-3">
+                    <div class="d-flex align-items-center gap-2 text-white fs-4 fw-bold" style="font-family: 'Orbitron';">
+                        <img src="img/logo.png" alt="HardReserve" class="footer-logo-laptop-img"> HardReserve
+                    </div>
+                    <div>
+                        <img src="img/logo-senai.png" alt="SENAI" class="logo-senai-img" />
+                    </div>
+                    <div class="text-white mt-2 fw-semibold">
+                        /hardreserve
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 class="footer-heading">HardReserve</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#">Baixar aplicativo</a></li>
+                        <li><a href="#">Suporte ao Usuário</a></li>
+                        <li class="mt-2">
+                            <span class="d-block fw-semibold mb-2" style="color: #00ffcc !important;">Siga nas redes sociais</span>
+                            <div class="social-icons">
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-whatsapp"></i></a>
+                            </div>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - HardReserve - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="col-md-3">
+                    <h5 class="footer-heading">Quem somos</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#">Clientes</a></li>
+                        <li><a href="#">Benefícios</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.15);">
+
+            <div class="d-flex flex-column flex-md-row justify-content-end align-items-center footer-bottom-links gap-2">
+                <span class="text-muted me-auto small">&copy; 2026 - HardReserve</span>
+                <a href="#">Acessibilidade</a>
+                <a href="#">Política de privacidade</a>
+                <a href="#">Termos de condições</a>
+            </div>
         </div>
-    </footer>
+</footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
