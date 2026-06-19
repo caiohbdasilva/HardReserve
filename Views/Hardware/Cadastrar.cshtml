@@ -1,0 +1,63 @@
+@model HardReserve.Models.Hardware
+
+@{
+    ViewData["Title"] = "Cadastrar Novo Hardware";
+}
+
+<div class="container mt-5" style="max-width: 700px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>🛠️ Cadastro de Hardware (Área Técnico)</h2>
+            <p class="text-muted">Insira as informações para adicionar o equipamento ao inventário.</p>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Formulário de Entrada de Equipamento</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label fw-bold">Nome do Equipamento *</label>
+                    <input asp-for="Nome" class="form-control" placeholder="Ex: Arduino Uno R3, ESP-32, Protoboard" required />
+                    <span asp-validation-for="Nome" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descricao" class="form-label fw-bold">Descrição / Especificações</label>
+                    <textarea asp-for="Descricao" class="form-control" rows="3" placeholder="Detalhes técnicos, modelo, pinagem relevante..."></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Quantidade_Total" class="form-label fw-bold">Quantidade Total *</label>
+                        <input asp-for="Quantidade_Total" type="number" class="form-control" min="1" value="1" required />
+                        <span asp-validation-for="Quantidade_Total" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Localizacao" class="form-label fw-bold">Localização / Armário</label>
+                        <input asp-for="Localizacao" class="form-control" placeholder="Ex: Armário A - Lab 3" />
+                        <span asp-validation-for="Localizacao" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Kit_Id" class="form-label fw-bold">Vincular a um Kit (Opcional)</label>
+                    <input asp-for="Kit_Id" type="number" class="form-control" placeholder="ID do Kit caso faça parte de um conjunto" />
+                    <span asp-validation-for="Kit_Id" class="text-danger small"></span>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 border-top pt-3">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar e Voltar</a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save me-1"></i> Salvar no Inventário
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

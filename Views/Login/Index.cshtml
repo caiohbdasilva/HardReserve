@@ -1,22 +1,38 @@
 @if (TempData["Erro"] != null)
 {
-    <div class="alert alert-danger" role="alert">
-        @TempData["Erro"]
-    </div>
+  <div class="alert alert-danger" role="alert">
+    @TempData["Erro"]
+  </div>
 }
 
 <form asp-controller="Usuario" asp-action="Logar" method="POST">
-  
-  <div class="form-group">
-    <label for="InputEmail">Endereço de E-mail</label>
-    <input type="email" name="email" class="form-control" id="InputEmail" placeholder="exemplo@senai.br" required>
-    <small id="emailHelp" class="form-text text-muted">Use o seu e-mail institucional cadastrado.</small>
+
+  <div class="container main-container">
+    <main role="main" class="w-100 d-flex justify-content-center pb-3">
+
+      <div class="login-page-container">
+        <div class="login-card">
+          <div class="login-logo-wrapper">
+            <img src="~/img/HardwareReserve.svg.png" alt="Icone HardReserve" class="login-card-icon" />
+            <h1 class="login-card-title">HardReserve</h1>
+          </div>
+
+          <form action="#" method="post" class="login-form">
+            <div class="form-group">
+              <label for="Email">Email</label>
+              <input type="email" id="Email" name="Email" required autocomplete="username" />
+            </div>
+
+            <div class="form-group">
+              <label for="Senha">Senha</label>
+              <input type="password" id="Senha" name="Senha" required autocomplete="current-password" />
+            </div>
+
+            <button type="submit" class="btn-submit-login">Entrar</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
   </div>
-  
-  <div class="form-group">
-    <label for="InputPassword">Senha</label>
-    <input type="password" name="senha" class="form-control" id="InputPassword" placeholder="Digite sua senha" required>
-  </div>
-  
-  <button type="submit" class="btn btn-primary w-100">Entrar</button>
 </form>

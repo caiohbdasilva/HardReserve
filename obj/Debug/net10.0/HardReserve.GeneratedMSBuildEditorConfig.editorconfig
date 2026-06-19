@@ -34,6 +34,14 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QkFTRVxjc3NcbGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/45797375800/Desktop/HardReserve/Views/Catalogo/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ29caW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/45797375800/Desktop/HardReserve/Views/Hardware/Cadastrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFyZHdhcmVcQ2FkYXN0cmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/45797375800/Desktop/HardReserve/Views/Hardware/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFyZHdhcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -46,8 +54,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxJbmRleC5jc2h0bWw=
+[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Listagem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxMaXN0YWdlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Solicitar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxTb2xpY2l0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/45797375800/Desktop/HardReserve/Views/Shared/_ValidationScriptsPartial.cshtml]

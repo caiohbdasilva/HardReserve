@@ -14,7 +14,8 @@ namespace HardReserve.Controllers
             _reservaService = reservaService;
         }
 
-        public async Task<IActionResult> Index()
+        // 1. ROTA: /Reserva/Listagem (Chama a tela Listagem.cshtml)
+        public async Task<IActionResult> Listagem()
         {
             if (HttpContext.Session.GetString("UsuarioId") == null)
             {
@@ -22,7 +23,19 @@ namespace HardReserve.Controllers
             }
 
             var listaReservas = await _reservaService.ListarReservasAsync();
-            return View(listaReservas);
+            return View(listaReservas); // Como o método chama "Listagem", ele busca automaticamente o Listagem.cshtml
+        }
+
+        // 2. ROTA: /Reserva/Solicitar (Chama a tela Solicitar.cshtml)
+        [HttpGet]
+        public IActionResult Solicitar()
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View(); // Como o método chama "Solicitar", ele busca automaticamente o Solicitar.cshtml
         }
     }
-} 
+}

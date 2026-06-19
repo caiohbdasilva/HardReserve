@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HardReserve.Interfaces;
+using Microsoft.AspNetCore.Http; 
+using System.Threading.Tasks;
 
 namespace HardReserve.Controllers
 {
@@ -12,7 +14,7 @@ namespace HardReserve.Controllers
             _hardwareService = hardwareService;
         }
 
-        // 1. Adicionado "async" aqui
+        // 1. ROTA: /Hardware (Exibe o Catálogo)
         public async Task<IActionResult> Index() 
         {
             if (HttpContext.Session.GetString("UsuarioId") == null)
@@ -20,10 +22,22 @@ namespace HardReserve.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            // 2. Mudou o nome do método e adicionou o "await" na frente
             var listaHardwares = await _hardwareService.BuscarHardwareComCatAsync(); 
 
             return View(listaHardwares);
+        }
+
+        // 2. ROTA: /Hardware/Cadastrar (Abre a tela Cadastrar.cshtml)
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            // Proteção: Só acessa a tela de cadastro se estiver logado
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            return View(); // Busca automaticamente o arquivo Views/Hardware/Cadastrar.cshtml
         }
     }
 }

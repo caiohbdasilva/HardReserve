@@ -7,113 +7,29 @@
 }
 
 body {
-    background-color: #041110;
-    font-family: 'Inter', sans-serif;
-    color: #ffffff;
-    overflow-x: hidden;
+    background: linear-gradient(180deg, #030d0c 0%, #014931 100%);
+    color: #a0b0ae;
+    font-family: 'Orbitron', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
-  body {
-            background-color: #030d0c !important;
-            color: #a0b0ae;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .custom-navbar {
-            background-color: #041110 !important;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.15) !important;
-            padding: 15px 0;
-        }
-        .custom-navbar .navbar-brand {
-            font-family: 'Orbitron', sans-serif;
-            color: #ffffff !important;
-            font-weight: 700;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .header-logo-img {
-            max-width: 35px;
-            height: auto;
-        }
-        .custom-navbar .nav-link {
-            color: #ffffff !important;
-            font-weight: 500;
-            padding: 8px 20px !important;
-            transition: all 0.3s ease;
-        }
-        /* Botão Capsule Ativo da Home */
-        .custom-navbar .nav-item .active-capsule {
-            background-color: #00cc99 !important;
-            color: #041110 !important;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        .custom-navbar .nav-link:hover:not(.active-capsule) {
-            color: #00ffcc !important;
-        }
-
-        /* Área de conteúdo flexível */
-        .main-container {
-            flex: 1;
-        }
-
-        /* FOOTER CUSTOM */
-        .custom-footer {
-            background-color: #030c0b;
-            border-top: 1px solid rgba(0, 255, 204, 0.1);
-            color: #a0b0ae;
-            font-size: 0.95rem;
-        }
-        .footer-heading {
-            font-family: 'Orbitron', sans-serif;
-            color: #00ffcc;
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        .custom-footer a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .custom-footer a:hover {
-            color: #00ffcc;
-        }
-        .social-icons a {
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-right: 15px;
-            transition: color 0.2s;
-        }
-        .social-icons a:hover {
-            color: #00ffcc;
-        }
-        .footer-bottom-links a {
-            color: #ffffff;
-            font-size: 0.85rem;
-            margin-left: 20px;
-        }
-        .footer-bottom-links a:hover {
-            color: #00ffcc;
-        }
-        .logo-senai-img {
-            max-width: 180px;
-            height: auto;
-            border-radius: 4px;
-        }
-        .footer-logo-laptop-img {
-            max-width: 40px;
-            height: auto;
-        }
+h1,
+h2,
+h3,
+h4,
+.btn-action,
+.login-card-title,
+.btn-submit-login,
+.custom-navbar .navbar-brand {
+    font-family: 'Orbitron', sans-serif !important;
+}
 
 /* hero */
 .hero-section {
-    background: url('../img/background-hero.png') no-repeat center center;
+    background: url('../images/hero-background.jpg') no-repeat center center;
     background-size: cover;
     min-height: 85vh;
     display: flex;
@@ -848,13 +764,534 @@ body {
     }
 }
 
-footer {
-    background-color: #041110;
-    border-top: 1px solid rgba(0, 255, 204, 0.1) !important;
-    color: #a0b0ae !important;
+/* header e footer */
+
+body {
+    background-color: #030d0c;
+    color: #a0b0ae;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Orbitron', sans-serif !important;
 }
 
-footer a {
+.custom-navbar {
+    background-color: #041110 !important;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.15) !important;
+    padding: 15px 0;
+}
+
+.custom-navbar .navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo-img {
+    max-width: 35px;
+    height: auto;
+}
+
+.custom-navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 8px 20px !important;
+    transition: all 0.3s ease;
+}
+
+.custom-navbar .nav-item .active-capsule {
+    background-color: #00cc99 !important;
+    color: #041110 !important;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.custom-navbar .nav-link:hover:not(.active-capsule) {
+    color: #00ffcc !important;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-footer {
+    background-color: #030c0b;
+    border-top: 1px solid rgba(0, 255, 204, 0.1);
+    color: #a0b0ae;
+    font-size: 0.95rem;
+}
+
+.footer-heading {
+    font-family: 'Orbitron', sans-serif;
     color: #00ffcc;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.custom-footer a {
+    color: #ffffff;
     text-decoration: none;
+    transition: color 0.2s;
+}
+
+.custom-footer a:hover {
+    color: #00ffcc;
+}
+
+.social-icons a {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #00ffcc;
+}
+
+.footer-bottom-links a {
+    color: #ffffff;
+    font-size: 0.85rem;
+    margin-left: 20px;
+}
+
+.footer-bottom-links a:hover {
+    color: #00ffcc;
+}
+
+.logo-senai-img {
+    max-width: 180px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.footer-logo-laptop-img {
+    max-width: 40px;
+    height: auto;
+}
+
+.form-group label {
+    color: #00ffcc;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #030d0c !important;
+    border: 1px solid rgba(0, 255, 204, 0.2) !important;
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00ffcc !important;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.cyber-card {
+    background-color: #041110;
+    border: 1px solid rgba(0, 255, 204, 0.15);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+*/ .page-title {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    color: #00ffcc;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hardware-img-wrapper {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.hardware-img {
+    max-width: 140px;
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 204, 0.2));
+}
+
+.hardware-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.hardware-desc {
+    color: #a0b0ae;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.badge-available {
+    background-color: rgba(0, 204, 153, 0.1);
+    border: 1px solid #00cc99;
+    color: #00cc99;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.summary-label {
+    color: #ffffff;
+}
+
+.summary-value {
+    color: #a0b0ae;
+    text-align: right;
+}
+
+.status-waiting {
+    color: #a0b0ae;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-cyber-cancel {
+    background-color: transparent;
+    border: 1px solid #00cc99;
+    color: #00cc99;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.btn-cyber-cancel:hover {
+    background-color: rgba(0, 204, 153, 0.1);
+    color: #00ffcc;
+}
+
+.btn-cyber-confirm {
+    background-color: #00ffcc;
+    color: #030d0c;
+    font-weight: 700;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    transition: all 0.3s;
+}
+
+.btn-cyber-confirm:hover {
+    background-color: #00cc99;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+    transform: translateY(-1px);
+}
+
+/* coisas pra pag cadastro */
+.page-title {
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    color: #00ffcc;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* area pra botar img */
+.image-upload-container {
+    border: 2px dashed rgba(0, 255, 204, 0.25);
+    background-color: rgba(3, 13, 12, 0.384);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+.image-upload-container:hover {
+    border-color: #00ffcc;
+    background-color: rgba(0, 255, 204, 0.03);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.1);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    color: rgba(0, 255, 204, 0.4);
+    margin-bottom: 12px;
+    transition: color 0.3s;
+}
+
+.image-upload-container:hover .upload-icon {
+    color: #00ffcc;
+}
+
+.upload-text {
+    font-size: 0.85rem;
+    color: #a0b0ae;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+/* butoes*/
+.btn-cyber-cancel {
+    background-color: transparent;
+    border: 1px solid #00cc99;
+    color: #00cc99;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.btn-cyber-cancel:hover {
+    background-color: rgba(0, 204, 153, 0.1);
+    color: #00ffcc;
+}
+
+.btn-cyber-confirm {
+    background-color: #00ffcc;
+    color: #030d0c;
+    font-weight: 700;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    transition: all 0.3s;
+}
+
+.btn-cyber-confirm:hover {
+    background-color: #00cc99;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+    transform: translateY(-1px);
+}
+
+/* --- CONFIGURAÇÕES DO LAYOUT DO CATÁLOGO (CORRIGIDO) --- */
+
+/* Força o container principal a usar Grid e separar a Sidebar da Área de Cards */
+.catalog-layout-grid {
+    display: grid !important;
+    grid-template-columns: 280px 1fr !important;
+    /* Sidebar fixa em 280px, o resto é dos cards */
+    gap: 30px !important;
+    align-items: flex-start !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+}
+
+/* Área de resultados que engloba o contador e o grid de cards */
+.catalog-results-area {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+/* --- GRID DE CARDS (O que estava quebrando em uma coluna) --- */
+.hardware-cards-grid {
+    display: grid !important;
+    /* Cria colunas responsivas: preenche o espaço com cards de no mínimo 280px cada */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 24px !important;
+    width: 100% !important;
+}
+
+/* --- DESIGN INDIVIDUAL DOS CARDS (hw-card) --- */
+.hw-card {
+    background-color: #1a1a1a !important;
+    /* Cor escura do tema tech */
+    border: 1px solid #2d2d2d !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    height: 100% !important;
+    /* Garante que todos fiquem do mesmo tamanho */
+}
+
+.hw-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 20px rgba(0, 255, 128, 0.15) !important;
+    /* Sombra neon sutil */
+    border-color: #00ff80 !important;
+}
+
+/* Container da Imagem dentro do Card */
+.hw-card-img-container {
+    width: 100% !important;
+    height: 180px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #121212 !important;
+    padding: 15px !important;
+}
+
+.hw-hardware-asset-img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Informações do Card */
+.hw-card-info {
+    padding: 20px !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.hw-card-info h4 {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    margin: 0 !important;
+}
+
+.hw-desc {
+    color: #aaaaaa !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.hw-loc {
+    color: #00ff80 !important;
+    /* Verde Tech */
+    font-size: 13px !important;
+    margin-top: auto !important;
+    /* Joga a localização para o fim do bloco */
+}
+
+/* Botões de Ação */
+.hw-card-actions {
+    padding: 0 20px 20px 20px !important;
+}
+
+.btn-tech-action {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background-color: #00ff80 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: background-color 0.2s !important;
+}
+
+.btn-tech-action:hover {
+    background-color: #00cc66 !important;
+}
+
+/* --- SIDEBAR DE FILTROS --- */
+.filter-sidebar {
+    background-color: #1a1a1a !important;
+    border: 1px solid #2d2d2d !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+}
+
+.filter-list-items {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 15px 0 0 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.filter-list-items label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: #cccccc !important;
+    cursor: pointer !important;
+}
+
+/* --- BARRA DE PESQUISA SUPERIOR --- */
+.search-filter-bar {
+    display: flex !important;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.search-input-wrapper {
+    flex: 2 !important;
+    position: relative !important;
+}
+
+.category-dropdown-wrapper {
+    flex: 1 !important;
+}
+
+.input-tech {
+    width: 100% !important;
+    background-color: #1a1a1a !important;
+    border: 1px solid #2d2d2d !important;
+    color: #ffffff !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    outline: none !important;
+}
+
+.input-tech:focus {
+    border-color: #00ff80 !important;
+}
+
+/* --- RESPONSIVIDADE (Telas menores/Celular) --- */
+@media (max-width: 992px) {
+    .catalog-layout-grid {
+        grid-template-columns: 1fr !important;
+        /* Sidebar vai para cima em telas pequenas */
+    }
 }

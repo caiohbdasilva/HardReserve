@@ -1,0 +1,176 @@
+/* --- CONFIGURAÇÕES DO LAYOUT DO CATÁLOGO (CORRIGIDO) --- */
+
+/* Força o container principal a usar Grid e separar a Sidebar da Área de Cards */
+.catalog-layout-grid {
+    display: grid !important;
+    grid-template-columns: 280px 1fr !important; /* Sidebar fixa em 280px, o resto é dos cards */
+    gap: 30px !important;
+    align-items: flex-start !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+}
+
+/* Área de resultados que engloba o contador e o grid de cards */
+.catalog-results-area {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+/* --- GRID DE CARDS (O que estava quebrando em uma coluna) --- */
+.hardware-cards-grid {
+    display: grid !important;
+    /* Cria colunas responsivas: preenche o espaço com cards de no mínimo 280px cada */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; 
+    gap: 24px !important;
+    width: 100% !important;
+}
+
+/* --- DESIGN INDIVIDUAL DOS CARDS (hw-card) --- */
+.hw-card {
+    background-color: #1a1a1a !important; /* Cor escura do tema tech */
+    border: 1px solid #2d2d2d !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    height: 100% !important; /* Garante que todos fiquem do mesmo tamanho */
+}
+
+.hw-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 20px rgba(0, 255, 128, 0.15) !important; /* Sombra neon sutil */
+    border-color: #00ff80 !important;
+}
+
+/* Container da Imagem dentro do Card */
+.hw-card-img-container {
+    width: 100% !important;
+    height: 180px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #121212 !important;
+    padding: 15px !important;
+}
+
+.hw-hardware-asset-img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Informações do Card */
+.hw-card-info {
+    padding: 20px !important;
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.hw-card-info h4 {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    margin: 0 !important;
+}
+
+.hw-desc {
+    color: #aaaaaa !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.hw-loc {
+    color: #00ff80 !important; /* Verde Tech */
+    font-size: 13px !important;
+    margin-top: auto !important; /* Joga a localização para o fim do bloco */
+}
+
+/* Botões de Ação */
+.hw-card-actions {
+    padding: 0 20px 20px 20px !important;
+}
+
+.btn-tech-action {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background-color: #00ff80 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: background-color 0.2s !important;
+}
+
+.btn-tech-action:hover {
+    background-color: #00cc66 !important;
+}
+
+/* --- SIDEBAR DE FILTROS --- */
+.filter-sidebar {
+    background-color: #1a1a1a !important;
+    border: 1px solid #2d2d2d !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+}
+
+.filter-list-items {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 15px 0 0 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+.filter-list-items label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    color: #cccccc !important;
+    cursor: pointer !important;
+}
+
+/* --- BARRA DE PESQUISA SUPERIOR --- */
+.search-filter-bar {
+    display: flex !important;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.search-input-wrapper {
+    flex: 2 !important;
+    position: relative !important;
+}
+
+.category-dropdown-wrapper {
+    flex: 1 !important;
+}
+
+.input-tech {
+    width: 100% !important;
+    background-color: #1a1a1a !important;
+    border: 1px solid #2d2d2d !important;
+    color: #ffffff !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    outline: none !important;
+}
+
+.input-tech:focus {
+    border-color: #00ff80 !important;
+}
+
+/* --- RESPONSIVIDADE (Telas menores/Celular) --- */
+@media (max-width: 992px) {
+    .catalog-layout-grid {
+        grid-template-columns: 1fr !important; /* Sidebar vai para cima em telas pequenas */
+    }
+}
