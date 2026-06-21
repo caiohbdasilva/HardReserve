@@ -1,0 +1,114 @@
+@model HardReserve.Models.Reserva
+
+@{
+    ViewData["Title"] = "Comprovante de Reserva";
+    var hardwares = ViewBag.Hardwares as IEnumerable<HardReserve.Models.Hardware> ?? new List<HardReserve.Models.Hardware>();
+
+    string StatusTexto(string s) => s switch
+    {
+        "PE" => "Pendente",
+        "AP" => "Aprovado",
+        "CA" => "Cancelado",
+        "RE" => "Retirada",
+        "DE" => "Devolvida",
+        "AT" => "Atrasada",
+        _    => s
+    };
+}
+
+<div class="container py-5" style="max-width: 800px;">
+
+    <div class="comprovante-sucesso no-print">
+        <i class="bi bi-check-circle-fill"></i>
+        <h2>Reserva criada com sucesso!</h2>
+        <p>Guarde o número de protocolo abaixo para acompanhar sua reserva.</p>
+    </div>
+
+    <div class="comprovante-doc" id="comprovante">
+
+        <div class="comprovante-header">
+            <div class="comprovante-logo">
+                <img src="~/img/HardwareReserve.svg.png" alt="HardReserve" />
+                <span>HardReserve</span>
+            </div>
+            <div class="comprovante-tipo">COMPROVANTE DE RESERVA</div>
+        </div>
+
+        <div class="comprovante-protocolo">
+            <span class="protocolo-label">PROTOCOLO</span>
+            <span class="protocolo-numero">@Model.Protocolo</span>
+        </div>
+
+        <div class="comprovante-dados">
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-person"></i> Solicitante</span>
+                <span class="dado-valor">@(Model.Usuario?.Nome ?? "—")</span>
+            </div>
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-hash"></i> Nº da Reserva</span>
+                <span class="dado-valor">#@Model.Id</span>
+            </div>
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-calendar-event"></i> Data de Retirada</span>
+                <span class="dado-valor">@Model.DataInicial.ToString("dd/MM/yyyy HH:mm")</span>
+            </div>
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-calendar-check"></i> Data de Devolução</span>
+                <span class="dado-valor">@Model.DataFinal.ToString("dd/MM/yyyy HH:mm")</span>
+            </div>
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-box-seam"></i> Quantidade de Itens</span>
+                <span class="dado-valor">@Model.Quantidade</span>
+            </div>
+            <div class="dado-linha">
+                <span class="dado-label"><i class="bi bi-activity"></i> Status</span>
+                <span class="dado-valor">
+                    <span class="comprovante-status status-@Model.StatusReserva">@StatusTexto(Model.StatusReserva)</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="comprovante-itens">
+            <h4>Itens Reservados</h4>
+            <table class="comprovante-tabela">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hardware</th>
+                        <th>Categoria</th>
+                        <th>Localização</th>
+                        <th style="text-align:center;">Qtd</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ var listaHw = hardwares.ToList(); }
+                    @for (int idx = 0; idx < listaHw.Count; idx++)
+                    {
+                        var hw = listaHw[idx];
+                        <tr>
+                            <td>@(idx + 1)</td>
+                            <td>@hw.Nome</td>
+                            <td>@(hw.Categoria ?? "—")</td>
+                            <td>@(hw.Localizacao ?? "—")</td>
+                            <td style="text-align:center; font-weight:600;">@hw.QuantidadeNaReserva</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="comprovante-rodape">
+            <span>Documento gerado em @DateTime.Now.ToString("dd/MM/yyyy 'às' HH:mm:ss")</span>
+            <span>HardReserve &copy; @DateTime.Now.Year — SENAI São Paulo</span>
+        </div>
+    </div>
+
+    <div class="comprovante-acoes no-print">
+        <a asp-action="Listagem" class="btn-cyber-cancel btn-orbitron">
+            <i class="bi bi-list-ul"></i> Minhas Reservas
+        </a>
+        <button type="button" class="btn-cyber-confirm btn-orbitron" onclick="window.print()">
+            <i class="bi bi-file-earmark-pdf"></i> Baixar PDF / Imprimir
+        </button>
+    </div>
+</div>

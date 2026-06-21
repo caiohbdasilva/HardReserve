@@ -1,8 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Página teste";
+
+    var heroLogado  = Context.Session.GetString("UsuarioId") != null;
+    var heroTecnico = Context.Session.GetString("UsuarioRole") == "T";
 }
-
-
 
 <section class="hero-section">
     <div class="hero-container">
@@ -14,7 +15,14 @@
             <p class="hero-description">O melhor lugar para fazer sua reserva de hardwares de maneira moderna e
                 automatizada!</p>
                 <div class="hero-buttons">
-                    <a class="btn-hero btn-primary" asp-controller="Login" asp-action="Index">Reservar agora</a>
+                    @if (heroTecnico)
+                    {
+                        <a class="btn-hero btn-primary" asp-controller="Hardware" asp-action="Index">Analisar estoque</a>
+                    }
+                    else
+                    {
+                        <a class="btn-hero btn-primary" asp-controller="Reserva" asp-action="Criar">Reservar agora</a>
+                    }
                     <a class="btn-hero btn-secondary" asp-controller="Hardware" asp-action="Index">Verificar
                         disponibilidade</a>
                     </div>
@@ -117,4 +125,3 @@
                         </div>
                     </div>
                 </section>
-

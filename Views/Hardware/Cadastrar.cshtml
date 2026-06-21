@@ -1,63 +1,145 @@
 @model HardReserve.Models.Hardware
 
 @{
-    ViewData["Title"] = "Cadastrar Novo Hardware";
+    var ehEdicao = Model != null && Model.Id > 0;
+    var temImagem = ehEdicao && !string.IsNullOrEmpty(Model.Imagem);
+    var imagemUrl = temImagem ? Url.Content("~/" + Model.Imagem) : "#";
+    ViewData["Title"] = ehEdicao ? "Editar Hardware" : "Cadastrar Hardware";
 }
 
-<div class="container mt-5" style="max-width: 700px;">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h2>🛠️ Cadastro de Hardware (Área Técnico)</h2>
-            <p class="text-muted">Insira as informações para adicionar o equipamento ao inventário.</p>
-        </div>
-    </div>
+<div class="container py-5" style="max-width: 1200px;">
+    <h1 class="page-title text-white">@(ehEdicao ? "Editar hardware" : "Cadastrar hardware")</h1>
 
-    <div class="card shadow-sm">
-        <div class="card-header bg-dark text-white">
-            <h5 class="mb-0">Formulário de Entrada de Equipamento</h5>
-        </div>
-        <div class="card-body">
-            <form asp-action="Create" method="post">
-                
-                <div class="mb-3">
-                    <label asp-for="Nome" class="form-label fw-bold">Nome do Equipamento *</label>
-                    <input asp-for="Nome" class="form-control" placeholder="Ex: Arduino Uno R3, ESP-32, Protoboard" required />
-                    <span asp-validation-for="Nome" class="text-danger small"></span>
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <form asp-controller="Hardware" asp-action="@(ehEdicao ? "Editar" : "Cadastrar")" method="post" enctype="multipart/form-data">
+
+        @if (ehEdicao)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <input type="hidden" asp-for="Imagem" />
+        <input type="hidden" asp-for="Kit_Id" />
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+                <div class="cyber-card h-100 d-flex flex-column">
+                    <h3 class="section-subtitle" style="font-size: 1rem; font-family: 'Orbitron';">Imagem do Hardware</h3>
+
+                    <label for="FotoHardware" class="image-upload-container my-auto" id="uploadArea">
+                        <i class="bi bi-image upload-icon" id="uploadIcon" style="@(temImagem ? "display:none;" : "")"></i>
+                        <img id="previewImagem" src="@imagemUrl" alt="Pré-visualização"
+                             style="max-width:100%; max-height:160px; object-fit:contain; border-radius:6px; @(temImagem ? "display:block;" : "display:none;")" />
+                        <span class="upload-text" id="uploadText">@(temImagem ? "Clique para trocar a imagem" : "Clique para selecionar ou arraste a imagem do componente aqui")</span>
+                        <span class="text small mt-1" id="uploadHint">(PNG, JPG até 5MB)</span>
+                    </label>
+                    <input type="file" id="FotoHardware" name="FotoHardware" class="hidden-file-input" accept="image/*" />
                 </div>
+            </div>
 
-                <div class="mb-3">
-                    <label asp-for="Descricao" class="form-label fw-bold">Descrição / Especificações</label>
-                    <textarea asp-for="Descricao" class="form-control" rows="3" placeholder="Detalhes técnicos, modelo, pinagem relevante..."></textarea>
-                    <span asp-validation-for="Descricao" class="text-danger small"></span>
-                </div>
+            <div class="col-lg-8">
+                <div class="cyber-card h-100 d-flex flex-column justify-content-between">
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Quantidade_Total" class="form-label fw-bold">Quantidade Total *</label>
-                        <input asp-for="Quantidade_Total" type="number" class="form-control" min="1" value="1" required />
-                        <span asp-validation-for="Quantidade_Total" class="text-danger small"></span>
+                    <div>
+                        <h3 class="section-subtitle">Informações do Ativo</h3>
+
+                        <div class="form-group mb-4">
+                            <label for="Nome"><i class="bi bi-cpu"></i> Nome do Hardware</label>
+                            <input asp-for="Nome" type="text" placeholder="Ex: ESP-32 DevKit, Sensor Ultrassônico HC-SR04" required />
+                            <span asp-validation-for="Nome" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6 form-group">
+                                <label for="Quantidade_Total"><i class="bi bi-hash"></i> Qntd. Disponível</label>
+                                <input asp-for="Quantidade_Total" type="number" placeholder="0" min="0" required />
+                                <span asp-validation-for="Quantidade_Total" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="Categoria"><i class="bi bi-tags"></i> Categoria</label>
+                                <select asp-for="Categoria" required>
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="microcontroladores">Microcontroladores</option>
+                                    <option value="sensores">Sensores</option>
+                                    <option value="atuadores">Atuadores / Motores</option>
+                                    <option value="ferramentas">Ferramentas de Bancada</option>
+                                    <option value="kits">Kits de Desenvolvimento</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                                <span asp-validation-for="Categoria" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6 form-group">
+                                <label for="Status"><i class="bi bi-activity"></i> Status Inicial</label>
+                                <select asp-for="Status" required>
+                                    <option value="disponivel">Disponível para Reserva</option>
+                                    <option value="manutencao">Em Manutenção</option>
+                                    <option value="indisponivel">Indisponível</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="Codigo_Patrimonio"><i class="bi bi-barcode"></i> Cód. Patrimônio / ID (Opcional)</label>
+                                <input asp-for="Codigo_Patrimonio" type="text" placeholder="Ex: HARD-2026-05" />
+                                <span asp-validation-for="Codigo_Patrimonio" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-12 form-group">
+                                <label for="Localizacao"><i class="bi bi-geo-alt"></i> Localização / Armário (Opcional)</label>
+                                <input asp-for="Localizacao" type="text" placeholder="Ex: Armário A - Lab 3" />
+                                <span asp-validation-for="Localizacao" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="Descricao"><i class="bi bi-file-earmark-text"></i> Descrição / Especificações Técnicas</label>
+                            <textarea asp-for="Descricao" rows="4" placeholder="Descreva os detalhes do hardware, conexões, pinagem ou recomendações de uso..."></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger small"></span>
+                        </div>
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label asp-for="Localizacao" class="form-label fw-bold">Localização / Armário</label>
-                        <input asp-for="Localizacao" class="form-control" placeholder="Ex: Armário A - Lab 3" />
-                        <span asp-validation-for="Localizacao" class="text-danger small"></span>
+                    <div class="d-flex justify-content-end gap-3 mt-4 pt-3" style="border-top: 1px solid rgba(0, 255, 204, 0.1);">
+                        <a asp-action="Index" class="btn-cyber-cancel btn-orbitron">Cancelar</a>
+                        <button type="submit" class="btn-cyber-confirm btn-orbitron">@(ehEdicao ? "Salvar Alterações" : "Salvar Cadastro")</button>
                     </div>
-                </div>
 
-                <div class="mb-4">
-                    <label asp-for="Kit_Id" class="form-label fw-bold">Vincular a um Kit (Opcional)</label>
-                    <input asp-for="Kit_Id" type="number" class="form-control" placeholder="ID do Kit caso faça parte de um conjunto" />
-                    <span asp-validation-for="Kit_Id" class="text-danger small"></span>
                 </div>
-
-                <div class="d-flex justify-content-end gap-2 border-top pt-3">
-                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar e Voltar</a>
-                    <button type="submit" class="btn btn-success">
-                        <i class="bi bi-save me-1"></i> Salvar no Inventário
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            const input   = document.getElementById('FotoHardware');
+            const preview = document.getElementById('previewImagem');
+            const icon    = document.getElementById('uploadIcon');
+            const text    = document.getElementById('uploadText');
+            const hint    = document.getElementById('uploadHint');
+
+            if (!input) return;
+
+            input.addEventListener('change', function () {
+                const arquivo = this.files && this.files[0];
+                if (arquivo) {
+                    const leitor = new FileReader();
+                    leitor.onload = function (e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                        icon.style.display = 'none';
+                        text.textContent = arquivo.name;
+                        hint.textContent = 'Clique para trocar a imagem';
+                    };
+                    leitor.readAsDataURL(arquivo);
+                }
+            });
+        })();
+    </script>
+}

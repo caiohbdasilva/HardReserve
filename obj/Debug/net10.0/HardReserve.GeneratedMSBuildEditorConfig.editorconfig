@@ -19,61 +19,69 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = HardReserve
 build_property.RootNamespace = HardReserve
-build_property.ProjectDir = C:\Users\45797375800\Desktop\HardReserve\
+build_property.ProjectDir = C:\Users\caios\Área de Trabalho\HardReserve\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\45797375800\Desktop\HardReserve
+build_property.MSBuildProjectDirectory = C:\Users\caios\Área de Trabalho\HardReserve
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/45797375800/Desktop/HardReserve/BASE/css/layout.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/BASE/css/layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QkFTRVxjc3NcbGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Catalogo/index.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Catalogo/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0YWxvZ29caW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Hardware/Cadastrar.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Hardware/Cadastrar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFyZHdhcmVcQ2FkYXN0cmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Hardware/Index.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Hardware/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFyZHdhcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Home/Index.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Login/Index.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Listagem.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Reserva/Comprovante.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxDb21wcm92YW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Reserva/Criar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxDcmlhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Reserva/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Reserva/Solicitar.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Reserva/Solicitar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YVxTb2xpY2l0YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/_ViewImports.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/_ViewStart.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/45797375800/Desktop/HardReserve/Views/Shared/_Layout.cshtml]
+[C:/Users/caios/Área de Trabalho/HardReserve/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-46kejbp66k

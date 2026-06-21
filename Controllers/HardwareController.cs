@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HardReserve.Interfaces;
-using Microsoft.AspNetCore.Http; 
+using HardReserve.Models;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace HardReserve.Controllers
@@ -14,30 +15,141 @@ namespace HardReserve.Controllers
             _hardwareService = hardwareService;
         }
 
-        // 1. ROTA: /Hardware (Exibe o Catálogo)
-        public async Task<IActionResult> Index() 
+        private bool UsuarioEhTecnico()
         {
-            if (HttpContext.Session.GetString("UsuarioId") == null)
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            return HttpContext.Session.GetString("UsuarioRole") == "T";
+        }
 
-            var listaHardwares = await _hardwareService.BuscarHardwareComCatAsync(); 
+        public async Task<IActionResult> Index()
+        {
+            var listaHardwares = await _hardwareService.BuscarHardwareComCatAsync();
 
             return View(listaHardwares);
         }
 
-        // 2. ROTA: /Hardware/Cadastrar (Abre a tela Cadastrar.cshtml)
         [HttpGet]
         public IActionResult Cadastrar()
         {
-            // Proteção: Só acessa a tela de cadastro se estiver logado
             if (HttpContext.Session.GetString("UsuarioId") == null)
             {
                 return RedirectToAction("Index", "Login");
             }
 
-            return View(); // Busca automaticamente o arquivo Views/Hardware/Cadastrar.cshtml
+            if (!UsuarioEhTecnico())
+            {
+                TempData["Erro"] = "Acesso restrito: apenas técnicos podem cadastrar hardwares.";
+                return RedirectToAction("Index");
+            }
+
+            return View(new Hardware());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(Hardware hardware, IFormFile? FotoHardware)
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (!UsuarioEhTecnico())
+            {
+                TempData["Erro"] = "Acesso restrito: apenas técnicos podem cadastrar hardwares.";
+                return RedirectToAction("Index");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(hardware);
+            }
+
+            await _hardwareService.CadastrarHardwareAsync(hardware, FotoHardware);
+
+            TempData["Sucesso"] = $"Hardware \"{hardware.Nome}\" cadastrado com sucesso!";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Editar(int id)
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (!UsuarioEhTecnico())
+            {
+                TempData["Erro"] = "Acesso restrito: apenas técnicos podem editar hardwares.";
+                return RedirectToAction("Index");
+            }
+
+            var hardware = await _hardwareService.BuscarHardwarePorIdAsync(id);
+            if (hardware == null)
+            {
+                TempData["Erro"] = "Hardware não encontrado.";
+                return RedirectToAction("Index");
+            }
+
+            return View("Cadastrar", hardware);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Editar(Hardware hardware, IFormFile? FotoHardware)
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (!UsuarioEhTecnico())
+            {
+                TempData["Erro"] = "Acesso restrito: apenas técnicos podem editar hardwares.";
+                return RedirectToAction("Index");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("Cadastrar", hardware);
+            }
+
+            await _hardwareService.AtualizarHardwareAsync(hardware, FotoHardware);
+
+            TempData["Sucesso"] = $"Hardware \"{hardware.Nome}\" atualizado com sucesso!";
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Excluir(int id)
+        {
+            if (HttpContext.Session.GetString("UsuarioId") == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (!UsuarioEhTecnico())
+            {
+                TempData["Erro"] = "Acesso restrito: apenas técnicos podem excluir hardwares.";
+                return RedirectToAction("Index");
+            }
+
+            var hardware = await _hardwareService.BuscarHardwarePorIdAsync(id);
+            if (hardware == null)
+            {
+                TempData["Erro"] = "Hardware não encontrado.";
+                return RedirectToAction("Index");
+            }
+
+            var excluido = await _hardwareService.ExcluirHardwareAsync(id);
+            if (!excluido)
+            {
+                TempData["Erro"] = $"Não é possível excluir \"{hardware.Nome}\": ele está vinculado a uma ou mais reservas.";
+                return RedirectToAction("Index");
+            }
+
+            TempData["Sucesso"] = $"Hardware \"{hardware.Nome}\" excluído com sucesso!";
+            return RedirectToAction("Index");
         }
     }
 }

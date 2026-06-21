@@ -1,57 +1,79 @@
 @model IEnumerable<HardReserve.Models.Reserva>
 
 @{
-    ViewData["Title"] = "Listagem de Reservas";
+    ViewData["Title"] = "Minhas Reservas";
+
+    string StatusTexto(string s) => s switch
+    {
+        "PE" => "Pendente",
+        "AP" => "Aprovado",
+        "CA" => "Cancelado",
+        "RE" => "Retirada",
+        "DE" => "Devolvida",
+        "AT" => "Atrasada",
+        _    => s
+    };
 }
 
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>📋 Listagem de Reservas (Provisória)</h2>
-        <a asp-action="Solicitar" class="btn btn-primary">
-            Ir para Fazer Reserva
+<div class="container py-5" style="max-width: 1100px;">
+
+    <div class="d-flex justify-content-between align-items-center" style="margin-bottom:25px; flex-wrap:wrap; gap:12px;">
+        <h1 class="page-title text-white" style="margin:0;">Reservas</h1>
+        <a asp-action="Criar" class="btn-cyber-confirm btn-orbitron">
+            <i class="bi bi-plus-lg"></i> Nova Reserva
         </a>
     </div>
 
-    <p class="text-muted">Aguardando o HTML definitivo da equipe. Os dados do banco já estão renderizando abaixo:</p>
-
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered mt-3">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Data Inicial</th>
-                    <th>Data Final</th>
-                    <th>Quantidade</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    foreach (var reserva in Model)
-                    {
+    @if (!Model.Any())
+    {
+        <div class="cyber-card" style="text-align:center; padding:50px 20px;">
+            <i class="bi bi-calendar-x" style="font-size:3rem; color:#00ffcc;"></i>
+            <h3 class="text-white" style="margin-top:16px;">Nenhuma reserva por aqui ainda</h3>
+            <p class="text-muted" style="margin-bottom:20px;">Que tal reservar seu primeiro equipamento?</p>
+            <a asp-action="Criar" class="btn-cyber-confirm btn-orbitron" style="display:inline-block;">
+                Fazer uma reserva
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="cyber-card" style="padding:0; overflow:hidden;">
+            <div style="overflow-x:auto;">
+                <table class="comprovante-tabela" style="font-size:0.9rem;">
+                    <thead>
                         <tr>
-                            <td>@reserva.Id</td>
-                            <td>@reserva.DataInicial.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@reserva.DataFinal.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@reserva.Quantidade</td>
-                            <td>
-                                <span class="badge @(reserva.StatusReserva == "PE" ? "bg-warning text-dark" : "bg-success")">
-                                    @reserva.StatusReserva
-                                </span>
-                            </td>
+                            <th style="padding:14px 16px;">Protocolo</th>
+                            <th style="padding:14px 16px;">Solicitante</th>
+                            <th style="padding:14px 16px;">Retirada</th>
+                            <th style="padding:14px 16px;">Devolução</th>
+                            <th style="padding:14px 16px;">Itens</th>
+                            <th style="padding:14px 16px;">Status</th>
+                            <th style="padding:14px 16px;"></th>
                         </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="5" class="text-center text-muted py-4">
-                            Nenhuma reserva encontrada no banco de dados.
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var reserva in Model)
+                        {
+                            <tr>
+                                <td style="padding:14px 16px; font-family:'Orbitron',sans-serif; color:#00ffcc;">@reserva.Protocolo</td>
+                                <td style="padding:14px 16px;">@(reserva.Usuario?.Nome ?? "—")</td>
+                                <td style="padding:14px 16px;">@reserva.DataInicial.ToString("dd/MM/yy HH:mm")</td>
+                                <td style="padding:14px 16px;">@reserva.DataFinal.ToString("dd/MM/yy HH:mm")</td>
+                                <td style="padding:14px 16px;">@reserva.Quantidade</td>
+                                <td style="padding:14px 16px;">
+                                    <span class="comprovante-status status-@reserva.StatusReserva">@StatusTexto(reserva.StatusReserva)</span>
+                                </td>
+                                <td style="padding:14px 16px;">
+                                    <a asp-action="Comprovante" asp-route-id="@reserva.Id"
+                                       class="btn-add-carrinho" title="Ver comprovante" style="text-decoration:none;">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 </div>

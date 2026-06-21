@@ -1295,3 +1295,628 @@ body {
         /* Sidebar vai para cima em telas pequenas */
     }
 }
+
+/* ===== Ajustes da tela de Cadastro de Hardware ===== */
+
+/* Fonte Orbitron nos botões cyber da tela de cadastro */
+.btn-orbitron {
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 0.5px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Garante que o link "Cancelar" (que virou <a>) fique igual ao botão */
+a.btn-cyber-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* A área de upload já é clicável; reforça o cursor de mãozinha na imagem de preview */
+.image-upload-container img {
+    pointer-events: none;
+}
+
+/* ===== Ajustes do Catálogo (Index do Hardware) ===== */
+
+/* Título e contador */
+.catalog-header-title {
+    margin-bottom: 25px;
+}
+
+.results-counter {
+    color: #a0b0ae;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+/* O card precisa ser "position: relative" para o badge de status flutuar no canto */
+.hw-card {
+    position: relative;
+}
+
+/* Badge de status no canto superior do card */
+.hw-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(4px);
+}
+
+.hw-status-badge i {
+    font-size: 0.55rem;
+}
+
+/* Cores por status */
+.hw-status-badge.status-disponivel {
+    background-color: rgba(0, 204, 153, 0.15);
+    color: #00ffcc;
+    border: 1px solid rgba(0, 255, 204, 0.4);
+}
+
+.hw-status-badge.status-manutencao {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.4);
+}
+
+.hw-status-badge.status-indisponivel {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+/* Ícone de fallback quando o hardware não tem imagem */
+.hw-img-fallback {
+    font-size: 3.5rem;
+    color: #2d2d2d;
+}
+
+/* Linha de quantidade dentro do card */
+.hw-qtd {
+    color: #00ff80 !important;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0 0 0;
+}
+
+.hw-qtd i {
+    font-size: 0.8rem;
+}
+
+/* Garante espaçamento da localização */
+.hw-loc {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ============================================================
+   TELA DE NOVA RESERVA (CARRINHO)
+   ============================================================ */
+
+/* Lista de hardwares disponíveis */
+.reserva-hw-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+.reserva-hw-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #0a1a18;
+    border: 1px solid rgba(0, 255, 204, 0.12);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.reserva-hw-item:hover {
+    border-color: rgba(0, 255, 204, 0.4);
+    background-color: #0c211e;
+}
+
+.reserva-hw-thumb {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    background-color: #121212;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.reserva-hw-thumb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.reserva-hw-thumb i {
+    font-size: 1.5rem;
+    color: #2d4441;
+}
+
+.reserva-hw-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.reserva-hw-info h5 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    margin: 0 0 3px 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.reserva-hw-info span {
+    color: #00ff80;
+    font-size: 0.78rem;
+}
+
+.btn-add-carrinho {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid #00cc99;
+    background-color: rgba(0, 204, 153, 0.1);
+    color: #00ffcc;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add-carrinho:hover {
+    background-color: #00ffcc;
+    color: #041110;
+}
+
+/* Carrinho (resumo) */
+.carrinho-contador {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 7px;
+    background-color: #00ffcc;
+    color: #041110;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-left: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    padding: 30px 15px;
+    color: #6c7a78;
+}
+
+.carrinho-vazio i {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.carrinho-vazio p {
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.carrinho-itens {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 255, 204, 0.05);
+    border: 1px solid rgba(0, 255, 204, 0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.carrinho-item-nome {
+    color: #ffffff;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.carrinho-item-nome i {
+    color: #00ffcc;
+}
+
+.btn-remover {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.btn-remover:hover {
+    background-color: rgba(255, 107, 107, 0.15);
+}
+
+/* ============================================================
+   COMPROVANTE DE RESERVA
+   ============================================================ */
+
+.comprovante-sucesso {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.comprovante-sucesso i {
+    font-size: 3.5rem;
+    color: #00ffcc;
+}
+
+.comprovante-sucesso h2 {
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    margin: 12px 0 6px 0;
+}
+
+.comprovante-sucesso p {
+    color: #a0b0ae;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.comprovante-doc {
+    background-color: #041110;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 12px;
+    padding: 35px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.comprovante-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(0, 255, 204, 0.2);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.comprovante-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.comprovante-logo img {
+    max-height: 34px;
+}
+
+.comprovante-tipo {
+    color: #00ffcc;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.comprovante-protocolo {
+    background: linear-gradient(135deg, rgba(0,255,204,0.12), rgba(0,204,153,0.05));
+    border: 1px dashed rgba(0, 255, 204, 0.4);
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.protocolo-label {
+    color: #a0b0ae;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+}
+
+.protocolo-numero {
+    color: #00ffcc;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.comprovante-dados {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 28px;
+}
+
+.dado-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dado-label {
+    color: #a0b0ae;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dado-label i {
+    color: #00ffcc;
+}
+
+.dado-valor {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.comprovante-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.comprovante-status.status-PE { background: rgba(255,193,7,0.15); color: #ffc107; }
+.comprovante-status.status-AP { background: rgba(0,255,204,0.15); color: #00ffcc; }
+.comprovante-status.status-CA { background: rgba(220,53,69,0.15); color: #ff6b6b; }
+.comprovante-status.status-RE { background: rgba(13,110,253,0.15); color: #6ea8fe; }
+.comprovante-status.status-DE { background: rgba(25,135,84,0.15); color: #75b798; }
+.comprovante-status.status-AT { background: rgba(220,53,69,0.2); color: #ff8787; }
+
+.comprovante-itens h4 {
+    color: #00ffcc;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 14px;
+}
+
+.comprovante-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.comprovante-tabela thead th {
+    text-align: left;
+    color: #a0b0ae;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.comprovante-tabela tbody td {
+    color: #ffffff;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comprovante-rodape {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #6c7a78;
+    font-size: 0.78rem;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.comprovante-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+    .comprovante-doc { padding: 22px 18px; }
+    .protocolo-numero { font-size: 1.5rem; }
+    .comprovante-acoes .btn-cyber-confirm,
+    .comprovante-acoes .btn-cyber-cancel { width: 100%; text-align: center; justify-content: center; }
+}
+
+/* ============================================================
+   IMPRESSÃO / PDF (window.print)
+   Esconde o site e formata o comprovante como documento branco
+   ============================================================ */
+@media print {
+    /* Esconde tudo que não é o comprovante */
+    .custom-navbar, header, .custom-footer, footer,
+    .no-print, .alert, .navbar-toggler {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    .comprovante-doc {
+        background: #ffffff !important;
+        border: 1px solid #cccccc !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+        max-width: 100% !important;
+    }
+
+    .comprovante-logo,
+    .comprovante-tipo,
+    .protocolo-numero,
+    .comprovante-itens h4,
+    .dado-label i {
+        color: #0a7d63 !important;
+    }
+
+    .protocolo-label,
+    .dado-label,
+    .comprovante-rodape {
+        color: #555555 !important;
+    }
+
+    .dado-valor,
+    .comprovante-tabela tbody td,
+    .comprovante-logo {
+        color: #000000 !important;
+    }
+
+    .comprovante-protocolo {
+        background: #f2fbf9 !important;
+        border: 1px dashed #0a7d63 !important;
+    }
+
+    .comprovante-tabela thead th {
+        color: #333333 !important;
+        border-bottom: 1px solid #999999 !important;
+    }
+}
+
+/* ===== Seletor de quantidade no carrinho ===== */
+.carrinho-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.carrinho-item-disp {
+    color: #6c7a78;
+    font-size: 0.72rem;
+}
+
+.carrinho-item-controle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.qtd-seletor {
+    display: flex;
+    align-items: center;
+    background-color: #041110;
+    border: 1px solid rgba(0, 255, 204, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.btn-qtd {
+    width: 26px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: #00ffcc;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.btn-qtd:hover {
+    background-color: rgba(0, 255, 204, 0.15);
+}
+
+.qtd-valor {
+    min-width: 26px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.hw-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.hw-card-actions .btn-tech-action {
+    flex: 1;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.hw-card-actions .form-excluir {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-tech-edit {
+    background-color: #00ffcc !important;
+}
+
+.btn-tech-delete {
+    background-color: transparent !important;
+    color: #ff6b6b !important;
+    border: 1px solid #ff6b6b !important;
+}
+
+.btn-tech-delete:hover {
+    background-color: rgba(255, 107, 107, 0.15) !important;
+}

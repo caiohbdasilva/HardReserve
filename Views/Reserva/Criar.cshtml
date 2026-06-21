@@ -1,0 +1,228 @@
+@model IEnumerable<HardReserve.Models.Hardware>
+
+@{
+    ViewData["Title"] = "Nova Reserva";
+    var preSelecionado = ViewBag.HardwarePreSelecionado as int?;
+}
+
+<div class="container py-5" style="max-width: 1200px;">
+    <h1 class="page-title text-white">Nova Reserva</h1>
+    <p class="text-muted" style="margin-top:-15px; margin-bottom:25px;">
+        Monte seu carrinho, escolha a quantidade de cada item e o período da reserva.
+    </p>
+
+    <form id="formReserva" asp-controller="Reserva" asp-action="Criar" method="post">
+        <div class="row g-4">
+
+            <div class="col-lg-7">
+                <div class="cyber-card">
+                    <h3 class="section-subtitle"><i class="bi bi-cpu"></i> Hardwares Disponíveis</h3>
+
+                    <div class="form-group" style="margin-bottom:18px;">
+                        <input type="text" id="buscaHw" class="input-tech"
+                               placeholder="Pesquisar hardware..." onkeyup="filtrarLista()" />
+                    </div>
+
+                    @if (!Model.Any())
+                    {
+                        <p class="text-muted" style="text-align:center; padding:30px;">
+                            <i class="bi bi-inbox" style="font-size:2rem;"></i><br />
+                            Nenhum hardware disponível para reserva no momento.
+                        </p>
+                    }
+                    else
+                    {
+                        <div class="reserva-hw-list" id="listaHw">
+                            @foreach (var hw in Model)
+                            {
+                                <div class="reserva-hw-item" data-nome="@hw.Nome.ToLower()" data-id="@hw.Id">
+                                    <div class="reserva-hw-thumb">
+                                        @if (!string.IsNullOrEmpty(hw.Imagem))
+                                        {
+                                            <img src="@Url.Content("~/" + hw.Imagem)" alt="@hw.Nome"
+                                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                            <i class="bi bi-cpu" style="display:none;"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-cpu"></i>
+                                        }
+                                    </div>
+                                    <div class="reserva-hw-info">
+                                        <h5>@hw.Nome</h5>
+                                        <span>@hw.QuantidadeDisponivel un. disponível(is)</span>
+                                    </div>
+                                    <button type="button" class="btn-add-carrinho"
+                                            data-id="@hw.Id" data-nome="@hw.Nome" data-disponivel="@hw.QuantidadeDisponivel">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="cyber-card" style="position:sticky; top:20px;">
+                    <h3 class="section-subtitle">
+                        <i class="bi bi-cart3"></i> Meu Carrinho
+                        <span class="carrinho-contador" id="contador">0</span>
+                    </h3>
+
+                    <div id="carrinhoVazio" class="carrinho-vazio">
+                        <i class="bi bi-cart-x"></i>
+                        <p>Seu carrinho está vazio.<br />Adicione hardwares da lista ao lado.</p>
+                    </div>
+
+                    <div id="carrinhoItens" class="carrinho-itens"></div>
+
+                    <div id="hiddenInputs"></div>
+
+                    <hr style="border-color: rgba(0,255,204,0.12); margin: 20px 0;" />
+
+                    <div class="form-group" style="margin-bottom:16px;">
+                        <label for="DataInicial"><i class="bi bi-calendar-event"></i> Data de Retirada</label>
+                        <input type="datetime-local" id="DataInicial" name="DataInicial" required />
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:22px;">
+                        <label for="DataFinal"><i class="bi bi-calendar-check"></i> Data de Devolução</label>
+                        <input type="datetime-local" id="DataFinal" name="DataFinal" required />
+                    </div>
+
+                    <button type="submit" class="btn-cyber-confirm btn-orbitron" id="btnConfirmar"
+                            style="width:100%; justify-content:center;" disabled>
+                        <i class="bi bi-check2-circle"></i> Confirmar Reserva
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        const carrinho = new Map();
+
+        function renderizarCarrinho() {
+            const itensDiv  = document.getElementById('carrinhoItens');
+            const vazioDiv  = document.getElementById('carrinhoVazio');
+            const hiddenDiv = document.getElementById('hiddenInputs');
+            const contador  = document.getElementById('contador');
+            const btn       = document.getElementById('btnConfirmar');
+
+            itensDiv.innerHTML = '';
+            hiddenDiv.innerHTML = '';
+
+            if (carrinho.size === 0) {
+                vazioDiv.style.display = 'block';
+                btn.disabled = true;
+            } else {
+                vazioDiv.style.display = 'none';
+                btn.disabled = false;
+
+                carrinho.forEach(function (dados, id) {
+                    const item = document.createElement('div');
+                    item.className = 'carrinho-item';
+                    item.innerHTML =
+                        '<div class="carrinho-item-info">' +
+                            '<span class="carrinho-item-nome"><i class="bi bi-box-seam"></i> ' + dados.nome + '</span>' +
+                            '<span class="carrinho-item-disp">máx: ' + dados.disponivel + '</span>' +
+                        '</div>' +
+                        '<div class="carrinho-item-controle">' +
+                            '<div class="qtd-seletor">' +
+                                '<button type="button" class="btn-qtd btn-menos">-</button>' +
+                                '<span class="qtd-valor">' + dados.quantidade + '</span>' +
+                                '<button type="button" class="btn-qtd btn-mais">+</button>' +
+                            '</div>' +
+                            '<button type="button" class="btn-remover" title="Remover"><i class="bi bi-trash"></i></button>' +
+                        '</div>';
+
+                    item.querySelector('.btn-menos').addEventListener('click', function () { alterarQtd(id, -1); });
+                    item.querySelector('.btn-mais').addEventListener('click',  function () { alterarQtd(id, 1); });
+                    item.querySelector('.btn-remover').addEventListener('click', function () { removerItem(id); });
+                    itensDiv.appendChild(item);
+
+                    const inputId = document.createElement('input');
+                    inputId.type = 'hidden';
+                    inputId.name = 'HardwareIds';
+                    inputId.value = id;
+                    hiddenDiv.appendChild(inputId);
+
+                    const inputQtd = document.createElement('input');
+                    inputQtd.type = 'hidden';
+                    inputQtd.name = 'Quantidades';
+                    inputQtd.value = dados.quantidade;
+                    hiddenDiv.appendChild(inputQtd);
+                });
+            }
+
+            contador.textContent = carrinho.size;
+        }
+
+        function adicionarItem(id, nome, disponivel) {
+            id = String(id);
+            disponivel = parseInt(disponivel) || 1;
+            if (!carrinho.has(id)) {
+                carrinho.set(id, { nome: nome, disponivel: disponivel, quantidade: 1 });
+                renderizarCarrinho();
+            }
+        }
+
+        function alterarQtd(id, delta) {
+            const dados = carrinho.get(id);
+            if (!dados) return;
+            const nova = dados.quantidade + delta;
+            if (nova >= 1 && nova <= dados.disponivel) {
+                dados.quantidade = nova;
+                carrinho.set(id, dados);
+                renderizarCarrinho();
+            }
+        }
+
+        function removerItem(id) {
+            carrinho.delete(String(id));
+            renderizarCarrinho();
+        }
+
+        function filtrarLista() {
+            const termo = (document.getElementById('buscaHw')?.value || '').toLowerCase();
+            document.querySelectorAll('#listaHw .reserva-hw-item').forEach(function (item) {
+                const nome = item.getAttribute('data-nome') || '';
+                item.style.display = nome.includes(termo) ? '' : 'none';
+            });
+        }
+
+        document.querySelectorAll('.btn-add-carrinho').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                adicionarItem(this.getAttribute('data-id'),
+                              this.getAttribute('data-nome'),
+                              this.getAttribute('data-disponivel'));
+            });
+        });
+
+        (function () {
+            const agora = new Date();
+            agora.setMinutes(agora.getMinutes() - agora.getTimezoneOffset());
+            const iso = agora.toISOString().slice(0, 16);
+            const di = document.getElementById('DataInicial');
+            const df = document.getElementById('DataFinal');
+            if (di) { di.min = iso; di.value = iso; }
+            if (df) {
+                const depois = new Date(agora.getTime() + 24 * 60 * 60 * 1000);
+                df.min = iso;
+                df.value = depois.toISOString().slice(0, 16);
+            }
+        })();
+
+        var preSelecionadoId = '@(preSelecionado?.ToString() ?? "")';
+        if (preSelecionadoId) {
+            var btnPre = document.querySelector('.btn-add-carrinho[data-id="' + preSelecionadoId + '"]');
+            if (btnPre) adicionarItem(btnPre.getAttribute('data-id'),
+                                      btnPre.getAttribute('data-nome'),
+                                      btnPre.getAttribute('data-disponivel'));
+        }
+    </script>
+}

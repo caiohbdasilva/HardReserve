@@ -7,8 +7,9 @@ namespace HardReserve.Models
 {
     public class Hardware_Reserva
     {
-        public int Reserva_Id { get; set; } 
-        public int Hardware_Id { get; set; } 
-       
+        public int Reserva_Id { get; set; }
+        public int Hardware_Id { get; set; }
+
+        public int Quantidade { get; set; } = 1;
     }
 }

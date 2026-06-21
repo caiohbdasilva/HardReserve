@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; // Para usar a Sessão (Session)
-using HardReserve.Interfaces;     // Para enxergar o IUsuarioService
+using Microsoft.AspNetCore.Http;
+using HardReserve.Interfaces;
 
 namespace HardReserve.Controllers
 {
@@ -8,7 +8,6 @@ namespace HardReserve.Controllers
     {
         private readonly IUsuarioService _service;
 
-        // Injeção de Dependência da sua Service
         public UsuarioController(IUsuarioService service)
         {
             _service = service;
@@ -22,15 +21,21 @@ namespace HardReserve.Controllers
             if (usuarioLogado == null)
             {
                 TempData["Erro"] = "E-mail ou senha inválidos, ou usuário inativo!";
-                return RedirectToAction("Index", "Login"); 
+                return RedirectToAction("Index", "Login");
             }
 
-            // Salvando os dados na Sessão
             HttpContext.Session.SetString("UsuarioId", usuarioLogado.Id.ToString());
             HttpContext.Session.SetString("UsuarioNome", usuarioLogado.Nome);
-            // HttpContext.Session.SetString("UsuarioRole", usuarioLogado.Role);
+
+            HttpContext.Session.SetString("UsuarioRole", usuarioLogado.Role.ToString());
 
             return RedirectToAction("Index", "Hardware");
+        }
+
+        public IActionResult Sair()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
