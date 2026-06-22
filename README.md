@@ -225,10 +225,13 @@ Algumas coisas que travaram a gente no caminho (e que valem como aprendizado pra
 
 ## 👥 Equipe
 
-Projeto desenvolvido pelos alunos do curso de Desenvolvimento de Sistemas — **SENAI São Paulo**.
+Projeto desenvolvido pelos alunos do curso de Desenvolvimento de Sistemas — **Escola SENAI Paulo Antonio Skaf - CFP 1.34 - São Caetano do Sul - SP**.
 
-- Caio Henrique B. da Silva
-- *(adicione aqui o nome dos demais integrantes do grupo)*
+- Caio Henrique B. da Silva;
+- Arthur Lucena Araujo (https://github.com/arthurlaraujo7);
+- Laura Angélica Medeiro Costa (https://github.com/LauraAngelica30);
+- Giulia Luz Faria da Cruz (https://github.com/caleidoscopiodotempo);
+- Lucas França da Silva (https://github.com/Lucax-Dev);
 
 ---
 
