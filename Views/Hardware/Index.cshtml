@@ -67,12 +67,22 @@
         <div class="hardware-cards-grid" id="cardsGrid">
             @foreach (var hw in Model)
             {
+                var esgotado = hw.QuantidadeDisponivel <= 0;
+                var podeReservar = hw.Status == "disponivel" && !esgotado;
+                var badgeClasse = hw.Status;
+                var badgeTexto = StatusTexto(hw.Status);
+                if (hw.Status == "disponivel" && esgotado)
+                {
+                    badgeClasse = "esgotado";
+                    badgeTexto = "Esgotado";
+                }
+
                 <div class="hw-card"
                      data-nome="@hw.Nome.ToLower()"
                      data-categoria="@hw.Categoria">
 
-                    <span class="hw-status-badge status-@hw.Status">
-                        <i class="bi bi-circle-fill"></i> @StatusTexto(hw.Status)
+                    <span class="hw-status-badge status-@badgeClasse">
+                        <i class="bi bi-circle-fill"></i> @badgeTexto
                     </span>
 
                     <div class="hw-card-img-container">
@@ -112,11 +122,17 @@
                                 </button>
                             </form>
                         }
-                        else
+                        else if (podeReservar)
                         {
                             <a asp-controller="Reserva" asp-action="Criar" asp-route-hardwareId="@hw.Id" class="btn-tech-action">
                                 <i class="bi bi-calendar-plus"></i> Reservar
                             </a>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn-tech-action btn-tech-disabled" disabled>
+                                <i class="bi bi-slash-circle"></i> Indisponível
+                            </button>
                         }
                     </div>
                 </div>

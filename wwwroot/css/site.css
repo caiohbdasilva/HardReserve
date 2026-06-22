@@ -2019,3 +2019,65 @@ a.btn-cyber-cancel {
         flex-wrap: wrap;
     }
 }
+
+.hw-status-badge.status-esgotado {
+    background-color: rgba(150, 160, 160, 0.15);
+    color: #aeb8b8;
+    border: 1px solid rgba(150, 160, 160, 0.4);
+}
+
+.btn-tech-action.btn-tech-disabled {
+    background-color: rgba(120, 130, 130, 0.18) !important;
+    color: #8b9898 !important;
+    border: 1px solid rgba(120, 130, 130, 0.3) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.btn-status-acao {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.btn-status-acao.acao-aprovar {
+    color: #00ffcc;
+    border-color: rgba(0, 255, 204, 0.45);
+}
+.btn-status-acao.acao-aprovar:hover {
+    background-color: rgba(0, 255, 204, 0.15);
+}
+
+.btn-status-acao.acao-cancelar {
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.45);
+}
+.btn-status-acao.acao-cancelar:hover {
+    background-color: rgba(255, 107, 107, 0.15);
+}
+
+.btn-status-acao.acao-retirar {
+    color: #6ea8fe;
+    border-color: rgba(110, 168, 254, 0.45);
+}
+.btn-status-acao.acao-retirar:hover {
+    background-color: rgba(110, 168, 254, 0.15);
+}
+
+.btn-status-acao.acao-devolver {
+    color: #75b798;
+    border-color: rgba(117, 183, 152, 0.45);
+}
+.btn-status-acao.acao-devolver:hover {
+    background-color: rgba(117, 183, 152, 0.15);
+}

@@ -63,5 +63,10 @@ namespace HardReserve.Services
         {
             return await _reservaRepository.BuscarHardwaresDaReservaAsync(reservaId);
         }
+    
+        public async Task AtualizarStatusAsync(int id, string novoStatus)
+        {
+            await _reservaRepository.AtualizarStatusAsync(id, novoStatus);
+        }
     }
 }

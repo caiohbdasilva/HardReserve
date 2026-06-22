@@ -17,5 +17,7 @@ namespace HardReserve.Interfaces
         Task<Dictionary<int, int>> ObterReservadoPorHardwareAsync();
 
         Task CriarReservaAsync(Reserva reserva, Dictionary<int, int> itens);
+
+        Task AtualizarStatusAsync(int id, string novoStatus);
     }
 }

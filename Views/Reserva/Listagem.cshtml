@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Minhas Reservas";
 
+    var ehTecnico = Context.Session.GetString("UsuarioRole") == "T";
+
     string StatusTexto(string s) => s switch
     {
         "PE" => "Pendente",
@@ -64,10 +66,44 @@
                                     <span class="comprovante-status status-@reserva.StatusReserva">@StatusTexto(reserva.StatusReserva)</span>
                                 </td>
                                 <td style="padding:14px 16px;">
-                                    <a asp-action="Comprovante" asp-route-id="@reserva.Id"
-                                       class="btn-add-carrinho" title="Ver comprovante" style="text-decoration:none;">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
+                                    <div style="display:flex; gap:6px; align-items:center;">
+                                        <a asp-action="Comprovante" asp-route-id="@reserva.Id"
+                                           class="btn-add-carrinho" title="Ver comprovante" style="text-decoration:none;">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        @if (ehTecnico)
+                                        {
+                                            if (reserva.StatusReserva == "PE")
+                                            {
+                                                <button type="button" class="btn-status-acao acao-aprovar" title="Aprovar"
+                                                        data-id="@reserva.Id" data-status="AP" data-label="aprovar esta reserva">
+                                                    <i class="bi bi-check-lg"></i>
+                                                </button>
+                                                <button type="button" class="btn-status-acao acao-cancelar" title="Cancelar"
+                                                        data-id="@reserva.Id" data-status="CA" data-label="cancelar esta reserva">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            }
+                                            else if (reserva.StatusReserva == "AP")
+                                            {
+                                                <button type="button" class="btn-status-acao acao-retirar" title="Registrar retirada"
+                                                        data-id="@reserva.Id" data-status="RE" data-label="registrar a retirada deste equipamento">
+                                                    <i class="bi bi-box-arrow-up"></i>
+                                                </button>
+                                                <button type="button" class="btn-status-acao acao-cancelar" title="Cancelar"
+                                                        data-id="@reserva.Id" data-status="CA" data-label="cancelar esta reserva">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            }
+                                            else if (reserva.StatusReserva == "RE" || reserva.StatusReserva == "AT")
+                                            {
+                                                <button type="button" class="btn-status-acao acao-devolver" title="Registrar devolução"
+                                                        data-id="@reserva.Id" data-status="DE" data-label="registrar a devolução deste equipamento">
+                                                    <i class="bi bi-box-arrow-in-down"></i>
+                                                </button>
+                                            }
+                                        }
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -75,5 +111,36 @@
                 </table>
             </div>
         </div>
+
+        <form id="formStatus" asp-action="MudarStatus" method="post" style="display:none;">
+            <input type="hidden" name="id" id="statusReservaId" />
+            <input type="hidden" name="novoStatus" id="statusNovoValor" />
+        </form>
     }
 </div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('.btn-status-acao').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                var id = this.getAttribute('data-id');
+                var status = this.getAttribute('data-status');
+                var label = this.getAttribute('data-label');
+                SwalCyber.fire({
+                    title: 'Confirmar ação?',
+                    text: 'Deseja ' + label + '?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, confirmar',
+                    cancelButtonText: 'Cancelar'
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        document.getElementById('statusReservaId').value = id;
+                        document.getElementById('statusNovoValor').value = status;
+                        document.getElementById('formStatus').submit();
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -47,9 +47,9 @@ A ideia do projeto nasceu de um problema real que a gente vê no laboratório do
 - 📋 **Catálogo de hardwares (público)** — lista os equipamentos em formato de cards, com barra de busca e filtro por categoria. **Qualquer pessoa pode ver o catálogo**, mesmo sem estar logada — a exigência de login só começa quando o usuário tenta fazer uma reserva.
 - 🛒 **Reserva tipo carrinho de compras** — uma tela onde o usuário adiciona os hardwares desejados a um carrinho, **escolhe a quantidade de cada item** (respeitando o que está disponível), define o período (data de retirada e devolução) e confirma. Lembra um e-commerce. **Exige login.**
 - 🧾 **Protocolo + comprovante** — ao confirmar a reserva, o sistema gera um número de **protocolo** no formato `ddMMyyHHmmss` (dia+mês+ano+hora+minuto+segundo) e mostra um **comprovante** com todos os dados, que pode ser **baixado em PDF** (pela função de impressão do navegador).
-- 📅 **Acompanhamento de reservas** — listagem das reservas com seus status. O status segue o modelo de negócio com 6 estados: **PE** (Pendente), **AP** (Aprovado), **CA** (Cancelado), **RE** (Retirada), **DE** (Devolvida) e **AT** (Atrasada).
+- 📅 **Acompanhamento e gestão de reservas** — listagem das reservas com seus status. O status segue o modelo de negócio com 6 estados: **PE** (Pendente), **AP** (Aprovado), **CA** (Cancelado), **RE** (Retirada), **DE** (Devolvida) e **AT** (Atrasada). O **técnico** tem botões de ação para conduzir a reserva pelo fluxo: aprovar ou cancelar uma pendente, registrar a retirada (ou cancelar) uma aprovada, e registrar a devolução de uma retirada/atrasada. Cada mudança pede confirmação antes de efetivar.
 - ➕ **Cadastro, edição e exclusão de hardware (área do técnico)** — formulário completo para adicionar um equipamento ao inventário, **com upload de foto**. No catálogo, o técnico também consegue **editar** (a mesma tela de cadastro abre já preenchida) e **excluir** os equipamentos. **Só aparece e só funciona para o perfil Técnico** (o botão no menu e o acesso pela URL são protegidos). A exclusão é bloqueada se o hardware já estiver em alguma reserva.
-- 📦 **Controle de estoque** — cada hardware tem uma quantidade total, e o sistema calcula automaticamente quantas unidades ainda estão **disponíveis** (descontando o que está reservado). O catálogo mostra "X de Y disponíveis" e a tela de reserva não deixa reservar mais do que existe. Reservas canceladas ou devolvidas liberam as unidades de volta.
+- 📦 **Controle de estoque** — cada hardware tem uma quantidade total, e o sistema calcula automaticamente quantas unidades ainda estão **disponíveis** (descontando o que está reservado). O catálogo mostra "X de Y disponíveis"; quando chega a zero, o item aparece como **Esgotado** e o botão de reserva fica desabilitado. A tela de reserva também não deixa reservar mais do que existe. Reservas canceladas ou devolvidas liberam as unidades de volta.
 - 💬 **Pop-ups estilizados** — as confirmações (excluir hardware, confirmar reserva) e as mensagens de sucesso/erro usam o **SweetAlert2** com o tema visual do projeto, no lugar dos avisos padrão do navegador.
 - 📱 **Responsividade** — o layout se adapta a celular, tablet e desktop (testado com as media queries do CSS).
 
@@ -183,9 +183,9 @@ A tabela `Hardware` recebeu **4 colunas novas** nesta versão para suportar o ca
 
 - **Home** (`/`) → landing page com a apresentação do sistema e o catálogo em destaque.
 - **Login** (`/Login`) → card de login com efeito de vidro (*glassmorphism*), no tema cyber.
-- **Catálogo** (`/Hardware`) → grid de cards com os hardwares, busca e filtros (precisa estar logado).
+- **Catálogo** (`/Hardware`) → grid de cards com os hardwares, busca e filtros (aberto a todos; o técnico vê aqui os botões de editar e excluir).
 - **Cadastrar Hardware** (`/Hardware/Cadastrar`) → formulário em duas colunas: à esquerda o upload da foto, à direita os dados do equipamento.
-- **Reservas** (`/Reserva/Listagem`) → tabela com todas as reservas e seus status.
+- **Reservas** (`/Reserva/Listagem`) → tabela com as reservas e seus status; o técnico tem aqui os botões para aprovar, cancelar, registrar retirada e registrar devolução.
 
 O visual todo segue uma pegada **"cyber/tech"**: fundo escuro com gradiente verde, detalhes em ciano neon (`#00ffcc`) e a fonte **Orbitron** nos títulos. 🟢
 

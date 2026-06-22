@@ -153,7 +153,6 @@ C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\scopedcss\Views\S
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\scopedcss\bundle\HardReserve.styles.css
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\scopedcss\projectbundle\HardReserve.bundle.scp.css
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\lvtjqw6wwh-sutcxe0hxa.gz
-C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\61wqp7gakx-61n19gt1b8.gz
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\n26n74rvto-fr7q2aak1r.gz
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\b9v1828731-bqjiyaj88i.gz
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\herlhycie1-c2jlpeoesf.gz
@@ -227,4 +226,5 @@ C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\HardReserve.pdb
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\HardReserve.genruntimeconfig.cache
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\ref\HardReserve.dll
 C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\HardReserve.sourcelink.json
-C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\2gszz91q8r-hs540h4a5s.gz
+C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\2gszz91q8r-07jd4bdjx4.gz
+C:\Users\caios\Área de Trabalho\HardReserve\obj\Debug\net10.0\compressed\61wqp7gakx-dsn1x6eibp.gz

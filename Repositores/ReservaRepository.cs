@@ -101,5 +101,15 @@ namespace HardReserve.Repositores
 
             await _context.SaveChangesAsync();
         }
+    
+        public async Task AtualizarStatusAsync(int id, string novoStatus)
+        {
+            var reserva = await _context.Reserva.FirstOrDefaultAsync(r => r.Id == id);
+            if (reserva != null)
+            {
+                reserva.StatusReserva = novoStatus;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

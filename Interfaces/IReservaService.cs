@@ -14,5 +14,7 @@ namespace HardReserve.Interfaces
 
         Task<Reserva?> BuscarReservaPorIdAsync(int id);
         Task<IEnumerable<Hardware>> BuscarHardwaresDaReservaAsync(int reservaId);
+
+        Task AtualizarStatusAsync(int id, string novoStatus);
     }
 }

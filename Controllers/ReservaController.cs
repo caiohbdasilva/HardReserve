@@ -119,5 +119,32 @@ namespace HardReserve.Controllers
 
             return View(reserva);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> MudarStatus(int id, string novoStatus)
+        {
+            if (!EstaLogado())
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            if (HttpContext.Session.GetString("UsuarioRole") != "T")
+            {
+                TempData["Erro"] = "Apenas o técnico pode alterar o status das reservas.";
+                return RedirectToAction("Listagem");
+            }
+
+            var statusValidos = new[] { "PE", "AP", "CA", "RE", "DE", "AT" };
+            if (!statusValidos.Contains(novoStatus))
+            {
+                TempData["Erro"] = "Status inválido.";
+                return RedirectToAction("Listagem");
+            }
+
+            await _reservaService.AtualizarStatusAsync(id, novoStatus);
+
+            TempData["Sucesso"] = "Status da reserva atualizado com sucesso!";
+            return RedirectToAction("Listagem");
+        }
     }
 }
