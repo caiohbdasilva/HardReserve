@@ -1920,3 +1920,102 @@ a.btn-cyber-cancel {
 .btn-tech-delete:hover {
     background-color: rgba(255, 107, 107, 0.15) !important;
 }
+
+.swal-cyber-popup {
+    border: 1px solid rgba(0, 255, 204, 0.3) !important;
+    border-radius: 12px !important;
+}
+
+.swal-cyber-title {
+    font-family: 'Orbitron', sans-serif !important;
+    color: #ffffff !important;
+    font-size: 1.3rem !important;
+}
+
+.swal-cyber-text {
+    color: #a0b0ae !important;
+}
+
+.swal-cyber-btn {
+    font-family: 'Orbitron', sans-serif !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px;
+}
+
+/* ===== Ajustes de responsividade para tablets e celulares ===== */
+@media (max-width: 768px) {
+    .container.py-5,
+    .container[style*="max-width"] {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+
+    .page-title {
+        font-size: 1.7rem !important;
+        margin-bottom: 22px !important;
+    }
+
+    .hero-title {
+        font-size: 2.4rem !important;
+    }
+
+    .section-subtitle {
+        font-size: 1.05rem !important;
+    }
+
+    .hardware-cards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+    }
+
+    .cyber-card {
+        padding: 22px !important;
+    }
+
+    .cyber-card[style*="sticky"] {
+        position: static !important;
+    }
+
+    .search-filter-bar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .swal-cyber-popup {
+        width: 92% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container.py-5,
+    .container[style*="max-width"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
+    }
+
+    .page-title {
+        font-size: 1.45rem !important;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+    }
+
+    .hw-card-actions {
+        flex-direction: column;
+    }
+
+    .carrinho-item {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .reserva-hw-item {
+        flex-wrap: wrap;
+    }
+}

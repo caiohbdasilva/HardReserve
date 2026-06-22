@@ -20,8 +20,23 @@ namespace HardReserve.Repository
 
         public async Task<IEnumerable<Hardware>> BuscarHardwareAsync()
         {
-            return await _context.Hardware
-                .ToListAsync();
+            var reservado = await (
+                from hr in _context.Hardware_Reserva
+                join r in _context.Reserva on hr.Reserva_Id equals r.Id
+                where r.StatusReserva != "CA" && r.StatusReserva != "DE"
+                group hr by hr.Hardware_Id into g
+                select new { HardwareId = g.Key, Total = g.Sum(x => x.Quantidade) }
+            ).ToDictionaryAsync(x => x.HardwareId, x => x.Total);
+
+            var hardwares = await _context.Hardware.ToListAsync();
+
+            foreach (var hw in hardwares)
+            {
+                var jaReservado = reservado.ContainsKey(hw.Id) ? reservado[hw.Id] : 0;
+                hw.QuantidadeDisponivel = hw.Quantidade_Total - jaReservado;
+            }
+
+            return hardwares;
         }
 
         public async Task CadastrarHardwareAsync(Hardware hardware)

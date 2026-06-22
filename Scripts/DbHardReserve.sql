@@ -1,3 +1,13 @@
+USE master;
+GO
+
+IF DB_ID('Hard_Reserve') IS NOT NULL
+BEGIN
+    ALTER DATABASE Hard_Reserve SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE Hard_Reserve;
+END
+GO
+
 CREATE DATABASE Hard_Reserve;
 GO
 
@@ -78,4 +88,22 @@ VALUES
 ('Servo Motor SG90', 'Atuador com controle preciso de posição.', 13, 'Armário B - Lab 3', 'atuadores', 'disponivel', 'HARD-2026-03', 'img/ServoMotor.png'),
 ('Sensor Ultrassônico HC-SR04', 'Mede distância entre o sensor e um objeto.', 13, 'Armário B - Lab 3', 'sensores', 'disponivel', 'HARD-2026-04', 'img/SensorDistancia.png'),
 ('Notebook Dell', 'Notebook para programação e desenvolvimento de projetos.', 5, 'Armário C - Lab 3', 'outros', 'disponivel', 'HARD-2026-05', 'img/Notebook.png');
+GO
+
+INSERT INTO Reserva (UsuarioId, DataInicial, DataFinal, StatusReserva, Quantidade, Protocolo) VALUES
+(2, '2026-06-21T09:00:00', '2026-06-23T09:00:00', 'PE', 1, '210626090000'),
+(2, '2026-06-20T10:00:00', '2026-06-24T10:00:00', 'AP', 1, '200626100000'),
+(2, '2026-06-18T11:00:00', '2026-06-19T11:00:00', 'CA', 1, '180626110000'),
+(2, '2026-06-19T12:00:00', '2026-06-25T12:00:00', 'RE', 1, '190626120000'),
+(2, '2026-06-10T13:00:00', '2026-06-12T13:00:00', 'DE', 1, '100626130000'),
+(2, '2026-06-05T14:00:00', '2026-06-07T14:00:00', 'AT', 1, '050626140000');
+GO
+
+INSERT INTO Hardware_Reserva (Reserva_Id, Hardware_Id, Quantidade) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 1, 1);
 GO

@@ -70,24 +70,6 @@
 </header>
 
         <main>
-            @if (TempData["Sucesso"] != null)
-            {
-                <div class="container mt-3">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <i class="bi bi-check-circle-fill me-1"></i> @TempData["Sucesso"]
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-                    </div>
-                </div>
-            }
-            @if (TempData["Erro"] != null)
-            {
-                <div class="container mt-3">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-1"></i> @TempData["Erro"]
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-                    </div>
-                </div>
-            }
             @RenderBody()
         </main>
 
@@ -146,7 +128,46 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        window.SwalCyber = Swal.mixin({
+            background: '#0a1a18',
+            color: '#ffffff',
+            confirmButtonColor: '#00cc99',
+            cancelButtonColor: '#ff6b6b',
+            customClass: {
+                popup: 'swal-cyber-popup',
+                title: 'swal-cyber-title',
+                htmlContainer: 'swal-cyber-text',
+                confirmButton: 'swal-cyber-btn',
+                cancelButton: 'swal-cyber-btn'
+            }
+        });
+
+        window.ToastCyber = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+            background: '#0a1a18',
+            color: '#ffffff',
+            customClass: { popup: 'swal-cyber-popup' }
+        });
+    </script>
+    @if (TempData["Sucesso"] != null)
+    {
+        <script>
+            ToastCyber.fire({ icon: 'success', title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["Sucesso"]?.ToString())) });
+        </script>
+    }
+    @if (TempData["Erro"] != null)
+    {
+        <script>
+            ToastCyber.fire({ icon: 'error', title: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(TempData["Erro"]?.ToString())) });
+        </script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

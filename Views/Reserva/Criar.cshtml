@@ -91,7 +91,7 @@
                         <input type="datetime-local" id="DataFinal" name="DataFinal" required />
                     </div>
 
-                    <button type="submit" class="btn-cyber-confirm btn-orbitron" id="btnConfirmar"
+                    <button type="button" class="btn-cyber-confirm btn-orbitron" id="btnConfirmar"
                             style="width:100%; justify-content:center;" disabled>
                         <i class="bi bi-check2-circle"></i> Confirmar Reserva
                     </button>
@@ -224,5 +224,25 @@
                                       btnPre.getAttribute('data-nome'),
                                       btnPre.getAttribute('data-disponivel'));
         }
+
+        document.getElementById('btnConfirmar').addEventListener('click', function () {
+            var form = document.getElementById('formReserva');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            SwalCyber.fire({
+                title: 'Confirmar reserva?',
+                text: 'Os itens do carrinho serão reservados para o período selecionado.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, reservar',
+                cancelButtonText: 'Cancelar'
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
     </script>
 }

@@ -92,7 +92,7 @@
                         <h4>@hw.Nome</h4>
                         <p class="hw-desc">@hw.Descricao</p>
                         <p class="hw-qtd">
-                            <i class="bi bi-box-seam-fill"></i> @hw.Quantidade_Total unidade(s)
+                            <i class="bi bi-box-seam-fill"></i> @hw.QuantidadeDisponivel de @hw.Quantidade_Total disponível(is)
                         </p>
                         @if (!string.IsNullOrEmpty(hw.Localizacao))
                         {
@@ -106,9 +106,8 @@
                             <a asp-action="Editar" asp-route-id="@hw.Id" class="btn-tech-action btn-tech-edit">
                                 <i class="bi bi-pencil-square"></i> Editar
                             </a>
-                            <form asp-action="Excluir" asp-route-id="@hw.Id" method="post" class="form-excluir"
-                                  onsubmit="return confirm('Tem certeza que deseja excluir este hardware? Esta ação não pode ser desfeita.');">
-                                <button type="submit" class="btn-tech-action btn-tech-delete">
+                            <form asp-action="Excluir" asp-route-id="@hw.Id" method="post" class="form-excluir">
+                                <button type="button" class="btn-tech-action btn-tech-delete btn-excluir-hw">
                                     <i class="bi bi-trash"></i> Excluir
                                 </button>
                             </form>
@@ -160,5 +159,23 @@
             const semResultados = document.getElementById('semResultados');
             if (semResultados) semResultados.style.display = visiveis === 0 ? 'block' : 'none';
         }
+
+        document.querySelectorAll('.btn-excluir-hw').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                var form = this.closest('form');
+                SwalCyber.fire({
+                    title: 'Tem certeza?',
+                    text: 'Esta ação não pode ser desfeita e o hardware será removido do catálogo.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim, excluir',
+                    cancelButtonText: 'Cancelar'
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
     </script>
 }

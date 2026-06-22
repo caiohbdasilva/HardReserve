@@ -32,6 +32,7 @@ A ideia do projeto nasceu de um problema real que a gente vê no laboratório do
 | **Razor (.cshtml)** | Motor de views, mistura HTML com C# |
 | **Bootstrap 5** | Grid responsivo e alguns componentes |
 | **Bootstrap Icons** | Ícones usados no sistema inteiro |
+| **SweetAlert2** | Pop-ups e confirmações estilizadas (a mesma biblioteca usada no projeto da Biblioteca) |
 | **CSS puro** | Toda a identidade visual "cyber/tech" (mais de 1.200 linhas de CSS!) |
 | **Google Fonts (Orbitron + Inter)** | Tipografia, dão a cara futurista do projeto |
 
@@ -44,10 +45,12 @@ A ideia do projeto nasceu de um problema real que a gente vê no laboratório do
 - 🔐 **Login com sessão** — o usuário entra com e-mail e senha. Os dados ficam guardados em `Session`, e as telas internas são protegidas (se você não estiver logado, é redirecionado pro login).
 - 🏠 **Página inicial (Home)** — uma landing page com seção *hero*, um preview do catálogo e a chamada para acessar a plataforma.
 - 📋 **Catálogo de hardwares (público)** — lista os equipamentos em formato de cards, com barra de busca e filtro por categoria. **Qualquer pessoa pode ver o catálogo**, mesmo sem estar logada — a exigência de login só começa quando o usuário tenta fazer uma reserva.
-- 🛒 **Reserva tipo carrinho de compras** — uma tela onde o usuário adiciona os hardwares desejados a um carrinho, escolhe o período (data de retirada e devolução) e confirma. Lembra um e-commerce. **Exige login.**
+- 🛒 **Reserva tipo carrinho de compras** — uma tela onde o usuário adiciona os hardwares desejados a um carrinho, **escolhe a quantidade de cada item** (respeitando o que está disponível), define o período (data de retirada e devolução) e confirma. Lembra um e-commerce. **Exige login.**
 - 🧾 **Protocolo + comprovante** — ao confirmar a reserva, o sistema gera um número de **protocolo** no formato `ddMMyyHHmmss` (dia+mês+ano+hora+minuto+segundo) e mostra um **comprovante** com todos os dados, que pode ser **baixado em PDF** (pela função de impressão do navegador).
 - 📅 **Acompanhamento de reservas** — listagem das reservas com seus status. O status segue o modelo de negócio com 6 estados: **PE** (Pendente), **AP** (Aprovado), **CA** (Cancelado), **RE** (Retirada), **DE** (Devolvida) e **AT** (Atrasada).
-- ➕ **Cadastro de hardware (área do técnico)** — formulário completo para adicionar um equipamento ao inventário, **com upload de foto**. **Só aparece e só funciona para o perfil Técnico** (o botão no menu e o acesso pela URL são protegidos).
+- ➕ **Cadastro, edição e exclusão de hardware (área do técnico)** — formulário completo para adicionar um equipamento ao inventário, **com upload de foto**. No catálogo, o técnico também consegue **editar** (a mesma tela de cadastro abre já preenchida) e **excluir** os equipamentos. **Só aparece e só funciona para o perfil Técnico** (o botão no menu e o acesso pela URL são protegidos). A exclusão é bloqueada se o hardware já estiver em alguma reserva.
+- 📦 **Controle de estoque** — cada hardware tem uma quantidade total, e o sistema calcula automaticamente quantas unidades ainda estão **disponíveis** (descontando o que está reservado). O catálogo mostra "X de Y disponíveis" e a tela de reserva não deixa reservar mais do que existe. Reservas canceladas ou devolvidas liberam as unidades de volta.
+- 💬 **Pop-ups estilizados** — as confirmações (excluir hardware, confirmar reserva) e as mensagens de sucesso/erro usam o **SweetAlert2** com o tema visual do projeto, no lugar dos avisos padrão do navegador.
 - 📱 **Responsividade** — o layout se adapta a celular, tablet e desktop (testado com as media queries do CSS).
 
 ---
@@ -87,7 +90,7 @@ HardReserve/
 │   ├── Home/             → Index (landing page)
 │   ├── Login/            → Index (tela de login)
 │   ├── Hardware/         → Index (catálogo) e Cadastrar (cadastro com foto)
-│   ├── Reserva/          → Listagem e Solicitar
+│   ├── Reserva/          → Listagem, Criar (carrinho) e Comprovante
 │   └── Shared/           → _Layout (cabeçalho/rodapé padrão do site)
 ├── wwwroot/
 │   ├── css/              → site.css (identidade visual) e catalogo.css
@@ -133,7 +136,9 @@ Abra o **SSMS**, conecte no seu servidor e execute o script:
 Scripts/DbHardReserve.sql
 ```
 
-Esse script cria o banco `Hard_Reserve`, todas as tabelas e já insere alguns dados de teste (um usuário técnico, um aluno e alguns hardwares) pra você conseguir testar na hora.
+Esse script cria o banco `Hard_Reserve`, todas as tabelas e já insere alguns dados de teste (um usuário técnico, um aluno, alguns hardwares e algumas reservas de exemplo — uma de cada status, pra você ver as cores) pra você conseguir testar na hora.
+
+> ⚠️ O script **recria o banco do zero**: se já existir um `Hard_Reserve`, ele apaga e cria de novo. Então rode com a aplicação fechada e lembre que dados cadastrados manualmente serão perdidos.
 
 ### 4. Rodar a aplicação
 Pelo terminal:
