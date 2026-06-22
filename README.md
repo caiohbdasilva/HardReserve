@@ -73,7 +73,7 @@ Controller  →  Service  →  Repository  →  DbContext  →  Banco
 
 Por que separar assim? Porque se um dia a gente trocar o banco, ou mudar uma regra, a gente mexe só na camada certa, sem quebrar o resto. 👍
 
-<img src="./wwwroot/img/Diagrama_de_Fluxo_MVC.png" alt="Diagrama de Fluxo MVC" width="500"/>
+<img src="./wwwroot/img/Diagrama_de_Fluxo_MVC.png" alt="Diagrama de Fluxo MVC"/>
 
 
 ---
